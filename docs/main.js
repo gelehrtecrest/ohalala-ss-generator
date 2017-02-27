@@ -34,7 +34,6 @@
 		//拡縮は10％ずつ
 		img.scaleX = img.scaleX * (1 + imageIni.Scale / 10);
 		img.scaleY = img.scaleY * (1 + imageIni.Scale / 10);
-		console.log(imageIni);
 
 		//ステージ生成
 		stage.addChild(img2);
@@ -49,7 +48,7 @@
 		var imageIni = {
 			xPos : 2,
 			yPos : 2,
-			Scale : -7,
+			Scale : -5,
 			imageData : null,
 			resetImage : function(){
 				this.xPos = 0;
