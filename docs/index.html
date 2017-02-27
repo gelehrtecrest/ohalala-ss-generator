@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head lang="ja">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>おはララジェネレータ</title>
+		<script src="http://code.createjs.com/easeljs-0.8.2.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<script src="main.js"></script>
+		<link href="style.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="jumbotron">
+			<div class="container">
+				<h1>おはララジェネレータ</h1>
+				<p>おはララロゴを合成するだけの簡易的なジェネレータです。</p>
+				<p>ロゴ配布元は<a href="https://twitter.com/feb_iris/status/819846357254959104">こちら</a>になります。</p>
+			</div>
+		</div>
+		<div class="container">
+			<dl class="table">
+			<dd><span><img src="" id="preview"></span><dd>
+			<dd><input type="file" accept="image/*" id="getfile"><dd>
+		</dl>
+		<div class="btn">
+			<button id="update" class="btn btn-primary">合成</button>
+			<button id="left" class="btn btn-default">←</button>
+			<button id="up" class="btn btn-default">↑</button>
+			<button id="down" class="btn btn-default">↓</button>
+			<button id="right" class="btn btn-default">→</button>
+			<button id="zoomin" class="btn btn-default">拡大</button>
+			<button id="zoomout" class="btn btn-default">縮小</button>
+			<button id="reset" class="btn btn-warning">リセット</button>
+		</div>
+
+		<div class="module">
+			<h2>生成結果</h2>
+			<h1 id="alert" style="color: red"></h1>
+			<div class="container canvas-stage">
+				<canvas id="result" width="100%" height="100%"></canvas>
+			</div>
+		</div>
+	</body>
+</html>
