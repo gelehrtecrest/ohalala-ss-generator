@@ -17,31 +17,85 @@
 			<div class="container">
 				<h1>おはララジェネレータ</h1>
 				<p>おはララロゴを合成するだけの簡易的なジェネレータです。</p>
-				<p>ロゴ配布元は<a href="https://twitter.com/feb_iris/status/819846357254959104">こちら</a>になります。</p>
+				<p>ロゴ配布元は<a href="https://twitter.com/feb_iris/status/819846357254959104" target="_blank">こちら</a>になります。</p>
 			</div>
 		</div>
 		<div class="container">
 			<dl class="table">
 			<dd><span><img src="" id="preview"></span><dd>
 			<dd><input type="file" accept="image/*" id="getfile"><dd>
-		</dl>
-		<div class="btn">
-			<button id="update" class="btn btn-primary">合成</button>
-			<button id="left" class="btn btn-default">←</button>
-			<button id="up" class="btn btn-default">↑</button>
-			<button id="down" class="btn btn-default">↓</button>
-			<button id="right" class="btn btn-default">→</button>
-			<button id="zoomin" class="btn btn-default">拡大</button>
-			<button id="zoomout" class="btn btn-default">縮小</button>
-			<button id="reset" class="btn btn-warning">リセット</button>
-		</div>
+			</dl>
+			<div class="btn">
+				<button id="update" class="btn btn-primary">合成</button>
+				<button id="left" class="btn btn-default">←</button>
+				<button id="up" class="btn btn-default">↑</button>
+				<button id="down" class="btn btn-default">↓</button>
+				<button id="right" class="btn btn-default">→</button>
+				<button id="zoomin" class="btn btn-default">拡大</button>
+				<button id="zoomout" class="btn btn-default">縮小</button>
+				<button id="reset" class="btn btn-warning">リセット</button>
+			</div>
 
-		<div class="module">
-			<h2>生成結果</h2>
-			<h1 id="alert" style="color: red"></h1>
-			<div class="container canvas-stage">
-				<canvas id="result" width="100%" height="100%"></canvas>
+			<div class="module">
+				<h2>生成結果</h2>
+				<h1 id="alert" style="color: red"></h1>
+				<div class="container canvas-stage">
+					<canvas id="result" width="100%" height="100%"></canvas>
+				</div>
 			</div>
 		</div>
+
+		<br />
+
+		<div class="jumbotron">
+			<div class="container">
+				<h3>使い方</h3>
+				<ul>
+					<li>ご使用中のPC内にあるスクリーンショットをファイル選択で入力してください。サーバには保存されません。</li>
+					<li><button class="btn btn-primary">合成</button>ボタンを押してください。生成結果にロゴが合成されたスクリーンショットが表示されます。</li>
+					<li>生成結果を右クリックで保存してください。(PCのみでテストしています。PS４などはわかりません。)</li>
+				</ul>
+			</div>
+		</div>
+		<div class="jumbotron">
+			<div class="container">
+				<h3>謝辞</h3>
+				<ul>
+					<li>ロゴ製作者(<a href="https://twitter.com/feb_iris" target="_blank">@feb_iris</a>)</li>
+					<li>このアプリ作成にあたって参考にしたサイト<a href="http://beatdjam.hatenablog.com/entry/2016/01/21/225150" target="_blank">【HTML5/jQuery/Javascript 】ローカルの画像を読み込んでJavaScriptで合成してみた</a>
+					<li>SS製作者のみなさま</li>
+					<li>ちょっとでもこのアプリに興味を持っていただいたみなさま</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="jumbotron">
+			<div class="container">
+				<h3>本ツールについて</h3>
+				<ul>
+					<li>本ツールはどのゲームのスクリーンショットにも対応しています。</li>
+					<li>ただし、製作者はファイナルファンタジーXIVでのスクリーンショットを加工するために使用するために作り、テストも同ゲームのスクリーンショットを使っています。そのため、他ゲームでの画像のテストは行なっていません。</li>
+					<ul>
+						<li>記載されている会社名・製品名・システム名などは、各社の商標、または登録商標です。</li>
+					</ul>
+					<li>ソースコードはGithub上で公開しています。<a href="https://github.com/gelehrtecrest/ohalala-ss-generator" target="_blank">https://github.com/gelehrtecrest/ohalala-ss-generator</a></li>
+					<li>本ツールのclone及び可変・再配布などはご自由に。</li>
+					<li>その他お問い合わせなどは <a href="https://twitter.com/gelehrte_crest" target="_blank">@gelehrte_crest</a>へレスもしくはDMお願いします。</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="jumbotron">
+			<div class="container">
+				<h3>今後の予定</h3>
+				<ul>
+					<li>現状、おはララアイコンの1つだけにしか対応させていないので、さまざまなロゴも合成できるようにしたい。</li>
+					<li>生成結果からそのままTwitterなどに流せるようにしたい</li>
+					<li>タブレットやPS4など、他のデバイスでもテストしたい</li>
+				</ul>
+			</div>
+		</div>
+
+
 	</body>
 </html>
