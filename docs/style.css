@@ -8,3 +8,8 @@ body {
 	padding-top: 15px;
 	padding-bottom: 15px;
 }
+
+#result,
+#preview {
+	width: 100%;
+}
