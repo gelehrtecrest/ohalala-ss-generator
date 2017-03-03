@@ -16,7 +16,7 @@
 			var baseImg2 = new Image();
 			baseImg2.src = imageData;
 			img2 = new createjs.Bitmap(baseImg2);
-			$("#result").attr({
+			$('#result').attr({
 				'width': baseImg2.width,
 				'height': baseImg2.height
 			});
@@ -54,9 +54,11 @@
 				var baseImg = new Image();
 				baseImg.src = $('#logourl').val();
 				img = new createjs.Bitmap(baseImg);
-				$("#alert").text("");
+				$('#alert').text('');
+				//URL再生成
+				write_settingurl(imageIni);
 			}).fail(function(data){
-				$("#alert").text("ロゴのURLが間違っています。ヒント：httpsから始まるURLにしてください。");
+				$('#alert').text('ロゴのURLが間違っています。ヒント：httpsから始まるURLにしてください。');
 			});
 		});
 
@@ -78,6 +80,26 @@
 				}
 			}
 		};
+
+		//get情報
+		var url = location.href;
+		var parameters = url.split('?');
+		var queries = (parameters[1] || 'dummy=dummy').split('&');
+		i = 0;
+
+		for(i; i < queries.length; i ++) {
+			var t = queries[i].split('=');
+			if(t['0'] = 'logourl'){
+			} else if(t['0'] = 'logourl'){
+				$('#logourl').val(decodeURIComponent(t['1']));
+			} else if(t['0'] = 'xpos'){
+				imageIni.xPos = t['1'];
+			} else if(t['0'] = 'ypos'){
+				imageIni.yPos = t['1'];
+			} else if(t['0'] = 'scale'){
+				imageIni.Scale = t['1'];
+			}
+		}
 
 		//イベント関連処理
 		//初回のみCanvasを作成しておく
@@ -102,22 +124,22 @@
 
 		//ボタンイベントまとめ
 		$('.btn').on('click',function(e){
-			if (e.target.id === "update"){
-			}else if (e.target.id === "up"){
+			if (e.target.id === 'update'){
+			}else if (e.target.id === 'up'){
 				imageIni.yPos -= 1;
-			}else if (e.target.id === "down"){
+			}else if (e.target.id === 'down'){
 				imageIni.yPos += 1;
-			}else if (e.target.id === "left"){
+			}else if (e.target.id === 'left'){
 				imageIni.xPos -= 1;
-			}else if (e.target.id === "right") {
+			}else if (e.target.id === 'right') {
 				imageIni.xPos += 1;
-			}else if (e.target.id === "zoomin") {
+			}else if (e.target.id === 'zoomin') {
 				imageIni.Scale += 1;
-			}else if (e.target.id === "zoomout") {
+			}else if (e.target.id === 'zoomout') {
 				imageIni.Scale -= 1;
-			}else if (e.target.id === "reset"){
+			}else if (e.target.id === 'reset'){
 				imageIni.resetImage();
-			}else if (e.target.id === "dl"){
+			}else if (e.target.id === 'dl'){
 				return;
 			}
 
@@ -125,8 +147,38 @@
 			if(imageIni.imageData !== null){
 				imageIni.makeImage();
 			}else{
-				$("#alert").text("スクリーンショットを入力してから画像生成を行ってください");
+				$('#alert').text('スクリーンショットを入力してから画像生成を行ってください');
 			}
+
+			//画面操作時はURLを再生成する
+			write_settingurl(imageIni);
 		});
+
+		//初回URL生成
+		write_settingurl(imageIni);
 	});
+
+	// URL生成
+	function geturl(imageIni) {
+		var url;
+		var baseurl = location.href.split('?')[0];
+		url = baseurl;
+
+		//設定をgetに追加
+		//ロゴURL
+		url = url + '?logourl=' + encodeURIComponent($('#logourl').val());
+		//ロゴ位置・サイズ
+		url = url + '?xpos=' + imageIni.xPos;
+		url = url + '?ypos=' + imageIni.yPos;
+		url = url + '?scale=' + imageIni.Scale;
+
+		return url;
+	}
+
+	// URL書き込み
+	function write_settingurl(imageIni) {
+		var url = geturl(imageIni);
+		$('#settingurl a').text(url);
+		$('#settingurl a').attr('href', url);
+	}
 })($);
