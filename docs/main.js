@@ -89,13 +89,13 @@
 
 		for(i; i < queries.length; i ++) {
 			var t = queries[i].split('=');
-			if(t['0'] = 'logourl'){
+			if(t['0'] == 'logourl'){
 				$('#logourl').val(decodeURIComponent(t['1']));
-			} else if(t['0'] = 'xpos'){
+			} else if(t['0'] == 'xpos'){
 				imageIni.xPos = t['1'];
-			} else if(t['0'] = 'ypos'){
+			} else if(t['0'] == 'ypos'){
 				imageIni.yPos = t['1'];
-			} else if(t['0'] = 'scale'){
+			} else if(t['0'] == 'scale'){
 				imageIni.Scale = t['1'];
 			}
 		}
