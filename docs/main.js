@@ -47,7 +47,7 @@
 		//設定のデフォルト値
 		$('#logourl').val('https://pbs.twimg.com/media/C2CtwVgUsAAaz86.png');
 
-		$('#logourl').keyup(function() {
+		$(document).on('input', '#logourl', function() {
 			$.ajax({
 				url: $('#logourl').val()
 			}).done(function(data){
@@ -90,7 +90,6 @@
 		for(i; i < queries.length; i ++) {
 			var t = queries[i].split('=');
 			if(t['0'] = 'logourl'){
-			} else if(t['0'] = 'logourl'){
 				$('#logourl').val(decodeURIComponent(t['1']));
 			} else if(t['0'] = 'xpos'){
 				imageIni.xPos = t['1'];
