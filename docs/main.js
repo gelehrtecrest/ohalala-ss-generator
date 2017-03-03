@@ -167,9 +167,9 @@
 		//ロゴURL
 		url = url + '?logourl=' + encodeURIComponent($('#logourl').val());
 		//ロゴ位置・サイズ
-		url = url + '?xpos=' + imageIni.xPos;
-		url = url + '?ypos=' + imageIni.yPos;
-		url = url + '?scale=' + imageIni.Scale;
+		url = url + '&xpos=' + imageIni.xPos;
+		url = url + '&ypos=' + imageIni.yPos;
+		url = url + '&scale=' + imageIni.Scale;
 
 		return url;
 	}
