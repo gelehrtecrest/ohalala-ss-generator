@@ -6,6 +6,11 @@
 
 	//画像ロード
 	function loadImage (imageData){
+		//画像のロード
+		var baseImg = new Image();
+		baseImg.src = $('#logourl').val();
+		img = new createjs.Bitmap(baseImg);
+
 		//画像が選択されている時のみ合成
 		if(imageData !== null) {
 			var baseImg2 = new Image();
