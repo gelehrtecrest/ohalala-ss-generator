@@ -101,11 +101,6 @@
 		}
 
 		//イベント関連処理
-		//初回のみCanvasを作成しておく
-		$(window).on('load',function(){
-			loadImage(null);
-		});
-
 		//画像読込
 		$('#getfile').change(function (){
 			//読み込み
@@ -155,6 +150,11 @@
 
 		//初回URL生成
 		write_settingurl(imageIni);
+	});
+
+	//画像先読み込み
+	$(window).on('load',function(){
+		loadImage(null);
 	});
 
 	// URL生成
