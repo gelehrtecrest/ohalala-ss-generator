@@ -6,11 +6,6 @@
 
 	//画像ロード
 	function loadImage (imageData){
-		//画像のロード
-		var baseImg = new Image();
-		baseImg.src = $('#logourl').val();
-		img = new createjs.Bitmap(baseImg);
-
 		//画像が選択されている時のみ合成
 		if(imageData !== null) {
 			var baseImg2 = new Image();
@@ -25,7 +20,7 @@
 		stage = new createjs.Stage('result');
 	}
 
-	//ロゴと文字を合成する処理
+	//ロゴを合成する処理
 	function genImage (imageIni){
 		//合成画像の設定
 		//上下は10ピクセルごと移動
@@ -47,6 +42,7 @@
 		//設定のデフォルト値
 		$('#logourl').val('https://pbs.twimg.com/media/C2CtwVgUsAAaz86.png');
 
+		//ロゴURL変更時の処理
 		$(document).on('input', '#logourl', function() {
 			$.ajax({
 				url: $('#logourl').val()
@@ -154,6 +150,11 @@
 
 	//画像先読み込み
 	$(window).on('load',function(){
+		//画像のロード
+		var baseImg = new Image();
+		baseImg.src = $('#logourl').val();
+		img = new createjs.Bitmap(baseImg);
+
 		loadImage(null);
 	});
 
