@@ -13,6 +13,8 @@
 				var baseImg = new Image();
 				baseImg.src = logoImageData;
 				img = new createjs.Bitmap(baseImg);
+			} else {
+				img = null;
 			}
 		} else { // ローカル
 			var baseImg = new Image();
