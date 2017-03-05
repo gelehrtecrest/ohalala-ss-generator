@@ -5,11 +5,20 @@
 	var stage;
 
 	//画像ロード
-	function loadImage (imageData){
+	function loadImage (imageData, logoImageData){
 		//画像のロード
-		var baseImg = new Image();
-		baseImg.src = $('#logourl').val();
-		img = new createjs.Bitmap(baseImg);
+		//URL
+		if($('input[name=logo]:checked').val() === 'local'){
+			if(logoImageData !== null) {
+				var baseImg = new Image();
+				baseImg.src = logoImageData;
+				img = new createjs.Bitmap(baseImg);
+			}
+		} else { // ローカル
+			var baseImg = new Image();
+			baseImg.src = $('#logourl').val();
+			img = new createjs.Bitmap(baseImg);
+		}
 
 		//画像が選択されている時のみ合成
 		if(imageData !== null) {
@@ -69,6 +78,7 @@
 			yPos : 2,
 			Scale : -5,
 			imageData : null,
+			logoImageData : null,
 			resetImage : function(){
 				this.xPos = 2;
 				this.yPos = 2;
@@ -76,7 +86,7 @@
 			},
 			makeImage : function(){
 				if(this.imageData !== null) {
-					loadImage(this.imageData);
+					loadImage(this.imageData, this.logoImageData);
 					genImage(this);
 				}
 			}
@@ -98,6 +108,10 @@
 				imageIni.yPos = t['1'];
 			} else if(t['0'] == 'scale'){
 				imageIni.Scale = t['1'];
+			} else if(t['0'] == 'logo'){
+				if(t['1'] == 'local'){
+					$('input[name=logo]').val(['local']);
+				}
 			}
 		}
 
@@ -113,6 +127,20 @@
 			$(reader).on('load',function(){
 				$('#preview').prop('src',reader.result);
 				imageIni.imageData = reader.result;
+			});
+		});
+
+		//ロゴ画像読込
+		$('#logogetfile').change(function (){
+			//読み込み
+			var fileList =$('#logogetfile').prop('files');
+			var reader = new FileReader();
+			reader.readAsDataURL(fileList[0]);
+
+			//読み込み後
+			$(reader).on('load',function(){
+				$('#logopreview').prop('src',reader.result);
+				imageIni.logoImageData = reader.result;
 			});
 		});
 
@@ -149,6 +177,18 @@
 			write_settingurl(imageIni);
 		});
 
+		$('input[name=logo]').click(function() {
+			//チェックボックス操作時は再描画を行う
+			if(imageIni.imageData !== null){
+				imageIni.makeImage();
+			}else{
+				$('#alert').text('スクリーンショットを入力してから画像生成を行ってください');
+			}
+
+			//チェックボックス操作時はURLを再生成する
+			write_settingurl(imageIni);
+		});
+
 		//初回URL生成
 		write_settingurl(imageIni);
 	});
@@ -160,7 +200,7 @@
 		baseImg.src = $('#logourl').val();
 		img = new createjs.Bitmap(baseImg);
 
-		loadImage(null);
+		loadImage(null, null);
 	});
 
 	// URL生成
@@ -176,7 +216,10 @@
 		url = url + '&xpos=' + imageIni.xPos;
 		url = url + '&ypos=' + imageIni.yPos;
 		url = url + '&scale=' + imageIni.Scale;
-
+		//ロゴ読み出し場所
+		if($('input[name=logo]:checked').val() === 'local'){
+			url = url + '&logo=local';
+		}
 		return url;
 	}
 

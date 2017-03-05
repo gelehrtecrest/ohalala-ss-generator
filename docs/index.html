@@ -22,15 +22,33 @@
 			</div>
 		</div>
 		<div class="container">
+			<div class="alert alert-success">Step1.(必須) 合成したいローカル上のスクリーンショットをアップロードします。</div>
 			<dl class="table">
 			<dd><label for="exampleInputEmail1">合成したいスクリーンショット</label></dd>
 			<dd><span><img src="" id="preview"></span><dd>
 			<dd><input type="file" accept="image/*" id="getfile"><dd>
 			</dl>
-			<div class="form-group">
-				<label for="exampleInputEmail1">合成したい画像のURL</label>
-				<input type="text" class="form-control" id="logourl" placeholder="URL">
+			<div class="alert alert-success">Step2.(任意) 合成したいロゴを選択します。</div>
+			<div class="row">
+				<div class="col-sm-1"><input type="radio" name="logo" value="url" checked="checked"></div>
+				<div class="col-sm-11">
+					<div class="form-group">
+						<label for="exampleInputEmail1">合成したい画像のURL</label>
+						<input type="text" class="form-control" id="logourl" placeholder="URL">
+					</div>
+				</div>
 			</div>
+			<div class="row">
+				<div class="col-sm-1"><input type="radio" name="logo" value="local"></div>
+				<div class="col-sm-11">
+					<dl class="table">
+						<dd><label for="exampleInputEmail1">合成したいロゴ</label></dd>
+						<dd><span><img src="" id="logopreview"></span><dd>
+						<dd><input type="file" accept="image/*" id="logogetfile"><dd>
+					</dl>
+				</div>
+			</div>
+			<div class="alert alert-success">Step3.(必須) 合成ボタンを押すとロゴが貼り付けられます。ロゴの位置・サイズも変更できます。</div>
 			<div class="btn">
 				<button id="update" class="btn btn-primary">合成</button>
 				<button id="left" class="btn btn-default">←</button>
@@ -100,6 +118,7 @@
 			<div class="container">
 				<h3>更新履歴</h3>
 				<ul>
+					<li> 2017/03/05 ローカルにあるロゴを読み込めるように</li>
 					<li> 2017/03/03 getによる初期設定ができるように</li>
 					<li> 2017/03/02 CSS修正</li>
 					<li> 2017/03/01 様々なロゴが使えるように</li>
