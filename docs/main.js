@@ -105,11 +105,11 @@
 			if(t['0'] == 'logourl'){
 				$('#logourl').val(decodeURIComponent(t['1']));
 			} else if(t['0'] == 'xpos'){
-				imageIni.xPos = t['1'];
+				imageIni.xPos = parseFloat(t['1']);
 			} else if(t['0'] == 'ypos'){
-				imageIni.yPos = t['1'];
+				imageIni.yPos = parseFloat(t['1']);
 			} else if(t['0'] == 'scale'){
-				imageIni.Scale = t['1'];
+				imageIni.Scale = parseFloat(t['1']);
 			} else if(t['0'] == 'logo'){
 				if(t['1'] == 'local'){
 					$('input[name=logo]').val(['local']);
