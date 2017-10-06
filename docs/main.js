@@ -39,9 +39,17 @@
 	//ロゴを合成する処理
 	function genImage (imageIni){
 		//合成画像の設定
+		//回転
+		img.rotation = imageIni.rotation;
+		//回転の中心は、画像の中央
+		img.regX = img.getBounds().width / 2;
+		img.regY = img.getBounds().height / 2;
+
 		//上下は10ピクセルごと移動
-		img.x = imageIni.xPos * 10;
-		img.y = imageIni.yPos * 10;
+		// 中央点からの補正
+		img.x = imageIni.xPos * 10 + img.getBounds().width / 2 * (1 + imageIni.Scale / 10);
+		img.y = imageIni.yPos * 10 + img.getBounds().height / 2 * (1 + imageIni.Scale / 10);
+
 		//拡縮は10％ずつ
 		img.scaleX = img.scaleX * (1 + imageIni.Scale / 10);
 		img.scaleY = img.scaleY * (1 + imageIni.Scale / 10);
@@ -79,12 +87,14 @@
 			xPos : 2,
 			yPos : 2,
 			Scale : -5,
+			rotation : 0,
 			imageData : null,
 			logoImageData : null,
 			resetImage : function(){
 				this.xPos = 2;
 				this.yPos = 2;
 				this.Scale = -5;
+				this.rotation = 0;
 			},
 			makeImage : function(){
 				if(this.imageData !== null) {
@@ -110,6 +120,8 @@
 				imageIni.yPos = parseFloat(t['1']);
 			} else if(t['0'] == 'scale'){
 				imageIni.Scale = parseFloat(t['1']);
+			} else if(t['0'] == 'rotation'){
+				imageIni.rotation = parseFloat(t['1']);
 			} else if(t['0'] == 'logo'){
 				if(t['1'] == 'local'){
 					$('input[name=logo]').val(['local']);
@@ -162,6 +174,10 @@
 				imageIni.Scale += 1;
 			}else if (e.target.id === 'zoomout') {
 				imageIni.Scale -= 1;
+			}else if (e.target.id === 'rotation_r') {
+				imageIni.rotation += 15;
+			}else if (e.target.id === 'rotation_l') {
+				imageIni.rotation -= 15;
 			}else if (e.target.id === 'reset'){
 				imageIni.resetImage();
 			}else if (e.target.id === 'dl'){
@@ -218,6 +234,8 @@
 		url = url + '&xpos=' + imageIni.xPos;
 		url = url + '&ypos=' + imageIni.yPos;
 		url = url + '&scale=' + imageIni.Scale;
+		//ロゴ回転
+		url = url + '&rotation=' + imageIni.rotation;
 		//ロゴ読み出し場所
 		if($('input[name=logo]:checked').val() === 'local'){
 			url = url + '&logo=local';
