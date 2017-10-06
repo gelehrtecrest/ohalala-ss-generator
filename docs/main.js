@@ -47,6 +47,7 @@
 
 		//上下は10ピクセルごと移動
 		// 中央点からの補正
+		//拡縮は10％ずつと過程 = いずれ定数化する必要がある
 		img.x = imageIni.xPos * 10 + img.getBounds().width / 2 * (1 + imageIni.Scale / 10);
 		img.y = imageIni.yPos * 10 + img.getBounds().height / 2 * (1 + imageIni.Scale / 10);
 
