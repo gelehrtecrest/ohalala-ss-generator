@@ -176,9 +176,9 @@
 			}else if (e.target.id === 'zoomout') {
 				imageIni.Scale -= 1;
 			}else if (e.target.id === 'rotation_r') {
-				imageIni.rotation += 15;
+				imageIni.rotation += 7.5;
 			}else if (e.target.id === 'rotation_l') {
-				imageIni.rotation -= 15;
+				imageIni.rotation -= 7.5;
 			}else if (e.target.id === 'reset'){
 				imageIni.resetImage();
 			}else if (e.target.id === 'dl'){
