@@ -55,6 +55,9 @@
 		img.scaleX = img.scaleX * (1 + imageIni.Scale / 10);
 		img.scaleY = img.scaleY * (1 + imageIni.Scale / 10);
 
+		//透明化
+		img.alpha = imageIni.alpha;
+
 		//ステージ生成
 		stage.addChild(img2);
 		stage.addChild(img);
@@ -89,6 +92,7 @@
 			yPos : 2,
 			Scale : -5,
 			rotation : 0,
+			alpha : 1.0,
 			imageData : null,
 			logoImageData : null,
 			resetImage : function(){
@@ -123,6 +127,8 @@
 				imageIni.Scale = parseFloat(t['1']);
 			} else if(t['0'] == 'rotation'){
 				imageIni.rotation = parseFloat(t['1']);
+			} else if(t['0'] == 'alpha'){
+				imageIni.alpha = parseFloat(t['1']);
 			} else if(t['0'] == 'logo'){
 				if(t['1'] == 'local'){
 					$('input[name=logo]').val(['local']);
@@ -179,6 +185,20 @@
 				imageIni.rotation += 7.5;
 			}else if (e.target.id === 'rotation_l') {
 				imageIni.rotation -= 7.5;
+			}else if (e.target.id === 'alpha_up') {
+				imageIni.alpha += 0.1;
+				if(imageIni.alpha >= 0.9){
+					imageIni.alpha = 1.0;
+					$('#alpha_up').prop("disabled", true);
+				}
+				$('#alpha_down').prop("disabled", false);
+			}else if (e.target.id === 'alpha_down') {
+				imageIni.alpha -= 0.1;
+				if(imageIni.alpha <= 0.1){
+					imageIni.alpha = 0.0;
+					$('#alpha_down').prop("disabled", true);
+				}
+				$('#alpha_up').prop("disabled", false);
 			}else if (e.target.id === 'reset'){
 				imageIni.resetImage();
 			}else if (e.target.id === 'dl'){
@@ -237,6 +257,8 @@
 		url = url + '&scale=' + imageIni.Scale;
 		//ロゴ回転
 		url = url + '&rotation=' + imageIni.rotation;
+		//ロゴ透過
+		url = url + '&alpha=' + imageIni.alpha;
 		//ロゴ読み出し場所
 		if($('input[name=logo]:checked').val() === 'local'){
 			url = url + '&logo=local';
