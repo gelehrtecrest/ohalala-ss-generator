@@ -1,7 +1,7 @@
 var $canvas = document.getElementById("canvas"), //Canvas要素の取得
     $ctx = $canvas.getContext("2d"), //canvasのコンテキストの設定
     $img = new Image(); //イメージオブジェクトの呼び出し
-$img.src = "test.jpg"; //イメージオブジェクトに画像を読み込み
+$img.src = "https://pbs.twimg.com/media/DQF_by-V4AAY5w1.jpg"; //イメージオブジェクトに画像を読み込み
 $img.onload = function() {
   $ctx.drawImage($img, 0, 0); //Canvasに読み込んだ画像を表示
   var $originalImageData = $ctx.getImageData(0, 0, 320, 320), //オリジナルの画像DATAを確保
