@@ -1,8 +1,36 @@
+<!DOCTYPE html>
 <html>
-	<body>
-		<canvas id="canvas" width="320" height="320"></canvas>
-		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-		<script src="test.js"></script>
-	
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>CanvasとJavascriptで画像処理 - 二階調化</title>
+    <script>
+      function init() {
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+        var image = new Image();
+        image.onload = function() {
+          context.drawImage(image, 0, 0);
+          var imageData = context.getImageData(0, 0, context.canvas.width, context.canvas.height);
+          var data = imageData.data;
+          for (var i = 0; i < data.length; i += 4) {
+            var lumi = 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2];
+            if (lumi > 127) {
+              data[i] = 255;
+              data[i + 1] = 255;
+              data[i + 2] = 255;
+            } else {
+              data[i] = 0;
+              data[i + 1] = 0;
+              data[i + 2] = 0;
+            }
+          }
+          context.putImageData(imageData, 0, 0);
+        };
+        image.src = 'mono.jpg';
+      }
+    </script>
+  </head>
+  <body onload="init()">
+    <canvas id="canvas" width="512" height="512"></canvas>
+  </body>
 </html>
