@@ -10,9 +10,24 @@
 		//URL
 		if($('input[name=logo]:checked').val() === 'local'){
 			if(logoImageData !== null) {
-				var baseImg = new Image();
+				var canvas = document.getElementById('canvas');
+				var context = canvas.getContext('2d');
+ 				var baseImg = new Image();
 				baseImg.src = logoImageData;
-				img = new createjs.Bitmap(baseImg);
+				baseImg.onload = function() {
+					context.drawImage(baseImg, 0, 0);
+					var imageData = context.getImageData(0, 0, context.canvas.width, context.canvas.height);
+					var data = imageData.data;
+					for (var i = 0; i < data.length; i += 4) {
+						var lumi = 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2];
+						if (lumi > 200) {
+							data[i] = 255;
+							data[i + 1] = 255;
+							data[i + 2] = 255;
+						}
+					}
+					img = new createjs.Bitmap(baseImg);
+				}
 			} else {
 				img = null;
 			}
@@ -57,16 +72,6 @@
 
 		//透明化
 		img.alpha = imageIni.alpha;	
-
-		//白抜き
-		var data = img.data;
-		for (var i = 0; i < data.length; i += 4) {
-			var lumi = 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2];
-			if (lumi > 250) {
-			    data[i + 3] = 255;
-		    	}
-		}
- 
 
 		//ステージ生成
 		stage.addChild(img2);
