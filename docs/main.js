@@ -7,18 +7,19 @@
 	//画像ロード
 	function loadImage (imageData, logoImageData){
 		//画像のロード
-		//URL
+		//ローカル
 		if($('input[name=logo]:checked').val() === 'local'){
 			if(logoImageData !== null) {
 				var baseImg = new Image();
-				baseImg.src = logoImageData;
+				var canvas = document.getElementById('canvas');
+				baseImg.src = canvas.toDataURL();
 				img = new createjs.Bitmap(baseImg);
 			} else {
 				img = null;
 			}
-		} else { // ローカル
+		} else { // URL
 			var baseImg = new Image();
-			baseImg.src = $('#logourl').val();
+			baseImg.src = $('#logourl').val()
 			img = new createjs.Bitmap(baseImg);
 		}
 
@@ -69,7 +70,8 @@
 	$(function(){
 		//設定のデフォルト値
 		$('#logourl').val('https://pbs.twimg.com/media/C2CtwVgUsAAaz86.png');
-
+		loadlogocanvas('https://pbs.twimg.com/media/C2CtwVgUsAAaz86.png', false);
+	
 		//ロゴURL変更時の処理
 		$(document).on('input', '#logourl', function() {
 			$.ajax({
@@ -81,6 +83,7 @@
 				$('#alert').text('');
 				//URL再生成
 				write_settingurl(imageIni);
+				loadlogocanvas($('#logourl').val(), false);
 			}).fail(function(data){
 				$('#alert').text('ロゴのURLが間違っています。ヒント：httpsから始まるURLにしてください。');
 			});
@@ -157,14 +160,57 @@
 			var fileList =$('#logogetfile').prop('files');
 			var reader = new FileReader();
 			reader.readAsDataURL(fileList[0]);
-
 			//読み込み後
 			$(reader).on('load',function(){
-				$('#logopreview').prop('src',reader.result);
 				imageIni.logoImageData = reader.result;
+				loadlogocanvas(reader.result, false);
 			});
 		});
 
+		//ロゴ画像読込(白抜き)
+		$('#logogetfilealpha').change(function (){
+			//読み込み
+			var fileList =$('#logogetfilealpha').prop('files');
+			var reader = new FileReader();
+			reader.readAsDataURL(fileList[0]);
+			//読み込み後
+			$(reader).on('load',function(){
+				imageIni.logoImageData = reader.result;
+				loadlogocanvas(reader.result, true);
+			});
+		});
+
+		function loadlogocanvas(url, flag){
+			var image = new Image();
+			image.onload = function() {
+				$('#canvas').attr({
+					'width': image.width,
+					'height': image.height
+				});
+				var canvas = document.getElementById('canvas');
+				var context = canvas.getContext('2d');
+ 				context.drawImage(image, 0, 0);
+				var imageData = context.getImageData(0, 0, context.canvas.width, context.canvas.height);
+				var data = imageData.data;
+				for (var i = 0; i < data.length; i += 4) {
+					//各カラーチャンネルで、一番暗い値を取得
+					var minLuminance = 255;
+					if(data[i] < minLuminance)
+						minLuminance = data[i];
+					if(data[i + 1] < minLuminance)
+						minLuminance = data[i + 1];
+					if(data[i + 2] < minLuminance)
+						minLuminance = data[i + 2];
+
+					if(flag){
+						//一番暗い値を、アルファチャンネルに反映(明るいところほど透明に)
+						data[i + 3] = 255 - minLuminance;
+					}
+				}
+				context.putImageData(imageData, 0, 0);
+			};
+			image.src = url;
+		}
 
 		//ボタンイベントまとめ
 		$('.btn').on('click',function(e){

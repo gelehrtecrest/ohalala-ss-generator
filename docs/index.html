@@ -52,10 +52,21 @@
 				<div class="col-sm-11">
 					<dl class="table">
 						<dd><label for="exampleInputEmail1">合成したいロゴ</label></dd>
-						<dd><span><img src="" id="logopreview"></span><dd>
 						<dd><input type="file" accept="image/*" id="logogetfile"><dd>
 					</dl>
 				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-1"><input type="radio" name="logo" value="local"></div>
+				<div class="col-sm-11">
+					<dl class="table">
+						<dd><label for="exampleInputEmail1">合成したいロゴ(白透過)</label></dd>
+						<dd><input type="file" accept="image/*" id="logogetfilealpha"><dd>
+					</dl>
+				</div>
+			</div>
+			<div>
+				<canvas id="canvas" width="100%" height="100%" style="display:none;"></canvas>
 			</div>
 			<hr />
 			<p>広告</p>
@@ -143,6 +154,7 @@
 			<div class="container">
 				<h3>更新履歴</h3>
 				<ul>
+					<li> 2017/12/07 jpgロゴの白透過の実装</li>
 					<li> 2017/11/01 ロゴの透過の実装</li>
 					<li> 2017/10/06 ロゴの回転の実装</li>
 					<li> 2017/09/19 リセットボタンを押さないとロゴ移動がおかしくなるバグの修正</li>
