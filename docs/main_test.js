@@ -58,6 +58,16 @@
 		//透明化
 		img.alpha = imageIni.alpha;	
 
+		//白抜き
+		var data = img.data;
+		for (var i = 0; i < data.length; i += 4) {
+			var lumi = 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2];
+			if (lumi > 250) {
+			    data[i + 3] = 255;
+		    	}
+		}
+ 
+
 		//ステージ生成
 		stage.addChild(img2);
 		stage.addChild(img);
