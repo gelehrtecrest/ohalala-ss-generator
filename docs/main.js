@@ -136,6 +136,11 @@
 				if(t['1'] == 'local'){
 					$('input[name=logo]').val(['local']);
 				}
+			} else if(t['0'] == 'title'){
+				$('title').text(decodeURIComponent(t['1']));
+				$('h1').text(decodeURIComponent(t['1']));
+			} else if(t['0'] == 'comment'){
+				$('#comment').text(decodeURIComponent(t['1']));
 			}
 		}
 
@@ -309,6 +314,10 @@
 		if($('input[name=logo]:checked').val() === 'local'){
 			url = url + '&logo=local';
 		}
+		//タイトル
+		url = url + '&title=' + encodeURIComponent($('title').text());
+		//コメント
+		url = url + '&comment=' + encodeURIComponent($('#comment').text());
 		return url;
 	}
 
