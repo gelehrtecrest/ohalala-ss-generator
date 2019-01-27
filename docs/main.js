@@ -69,8 +69,8 @@
 
 	$(function(){
 		//設定のデフォルト値
-		$('#logourl').val('https://pbs.twimg.com/media/C2CtwVgUsAAaz86.png');
-		loadlogocanvas('https://pbs.twimg.com/media/C2CtwVgUsAAaz86.png', false);
+		//$('#logourl').val('https://pbs.twimg.com/media/C2CtwVgUsAAaz86.png');
+		//loadlogocanvas('https://pbs.twimg.com/media/C2CtwVgUsAAaz86.png', false);
 	
 		//ロゴURL変更時の処理
 		$(document).on('input', '#logourl', function() {
