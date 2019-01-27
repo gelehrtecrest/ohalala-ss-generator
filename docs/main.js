@@ -1,4 +1,7 @@
 (function($){
+	//フラグ関係
+	var flag_b = true;
+
 	//画像関連
 	var img;
 	var img2;
@@ -68,9 +71,28 @@
 	}
 
 	$(function(){
+		var userAgent = window.navigator.userAgent.toLowerCase();
+		console.log(userAgent);
+		// IEとEdge判定
+		if(userAgent.indexOf('msie') != -1 || userAgent.indexOf('trident') != -1)  {
+			flag_b = false;
+		} else if(userAgent.indexOf('edge') != -1) {
+			flag_b = false;
+		} else {
+			flag_b = true;
+			
+		}
+
+		// logourlが使えない場合、UIを一部隠す
+		if(!flag_b){
+			$("#no_ie_edge").hide();
+		}
+
 		//設定のデフォルト値
-		//$('#logourl').val('https://pbs.twimg.com/media/C2CtwVgUsAAaz86.png');
-		//loadlogocanvas('https://pbs.twimg.com/media/C2CtwVgUsAAaz86.png', false);
+		if(flag_b){
+			$('#logourl').val('https://pbs.twimg.com/media/C2CtwVgUsAAaz86.png');
+			loadlogocanvas('https://pbs.twimg.com/media/C2CtwVgUsAAaz86.png', false);
+		}
 	
 		//ロゴURL変更時の処理
 		$(document).on('input', '#logourl', function() {
