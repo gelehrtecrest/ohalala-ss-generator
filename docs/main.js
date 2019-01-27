@@ -281,6 +281,15 @@
 
 		//初回URL生成
 		write_settingurl(imageIni);
+
+		//Canvas Download
+		$('#btnDownload').click(function() {
+			if($('input[name=logo]:checked').val() === 'local'){
+				DownloadStart();
+			} else {
+				alert('ロゴがURL指定のため、ダウンロードボタンは使用できません。')
+			}
+		});
 	});
 
 	//画像先読み込み
@@ -327,4 +336,53 @@
 		$('#settingurl a').text(url);
 		$('#settingurl a').attr('href', url);
 	}
+
 })($);
+
+function DownloadStart(){
+	
+	var cve = document.getElementById("result");
+	if (cve.getContext) {
+		// ダウンロード ファイル名
+		var now = new Date();
+		var year = now.getYear();
+		var month = now.getMonth() + 1;
+		var day = now.getDate();
+		var hour = now.getHours();
+		var min = now.getMinutes();
+		var sec = now.getSeconds();
+
+		var filename = 'download_' + year + month + day + hour + min + sec + '.png';
+
+		var ctx = cve.getContext('2d');
+		var base64 = cve.toDataURL();
+		document.getElementById("newImg").src = base64;
+
+		var blob = Base64toBlob(base64);
+		document.getElementById("dlImg").href = window.URL.createObjectURL(blob);
+		document.getElementById("dlImg").download = filename;
+
+		//  ダウンロード開始
+		if (window.navigator.msSaveBlob) {
+			// IE
+			window.navigator.msSaveBlob(Base64toBlob(base64), filename);
+		} else {
+			// Chrome, Firefox, Edge
+			document.getElementById("dlImg").click();
+		}
+	}
+}
+
+function Base64toBlob(base64)
+{
+	var tmp = base64.split(',');
+	var data = atob(tmp[1]);
+	var mime = tmp[0].split(':')[1].split(';')[0];
+	var buf = new Uint8Array(data.length);
+	for (var i = 0; i < data.length; i++) {
+		buf[i] = data.charCodeAt(i);
+	}
+	var blob = new Blob([buf], { type: mime });
+	return blob;
+}
+

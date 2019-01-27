@@ -101,16 +101,24 @@
 				<button id="reset" class="btn btn-warning">リセット</button>
 			</div>
 
-			<div class="settingurl">
-				<label>現在の設定情報のURL：このURLをブックマークすると、現在の設定情報を引き継げます</label>
-				<div id="settingurl" class="alert alert-info"><a href=""></a></div>
-			</div>
 			<div class="module">
-				<h2>生成結果 (画像を右クリックしてダウンロードしてください)</h2>
+				<h3>生成結果 (画像を右クリックしてダウンロードしてください)</h3>
+				<div style="display:none">
+					<img id="newImg">
+					<a href="" id="dlImg"></a>
+				</div>
+				<h3>
+					合成したいロゴをアップロードした場合はダウンロードボタンも使用できます
+					<button id="btnDownload" class="btn btn-primary">ダウンロード</button>
+				</h3>
 				<div id="alert" class="alert alert-warning" role="alert"></div>
 				<div class="container canvas-stage">
 					<canvas id="result" width="100%" height="100%"></canvas>
 				</div>
+			</div>
+			<div class="settingurl">
+				<label>現在の設定情報のURL：このURLをブックマークすると、現在の設定情報を引き継げます</label>
+				<div id="settingurl" class="alert alert-info"><a href=""></a></div>
 			</div>
 		</div>
 
@@ -158,6 +166,7 @@
 			<div class="container">
 				<h3>更新履歴</h3>
 				<ul>
+					<li> 2019/01/27 ダウンロードボタンの設置によるEdgeなどのブラウザ対応</li>
 					<li> 2017/12/07 jpgロゴの白透過の実装</li>
 					<li> 2017/11/01 ロゴの透過の実装</li>
 					<li> 2017/10/06 ロゴの回転の実装</li>
