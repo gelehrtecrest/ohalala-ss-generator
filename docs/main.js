@@ -125,6 +125,7 @@
 				this.yPos = 2;
 				this.Scale = -5;
 				this.rotation = 0;
+				this.alpha = 1.0;
 			},
 			makeImage : function(){
 				if(this.imageData !== null) {
@@ -274,6 +275,8 @@
 				$('#alpha_up').prop("disabled", false);
 			}else if (e.target.id === 'reset'){
 				imageIni.resetImage();
+				$('#alpha_up').prop("disabled", true);
+				$('#alpha_down').prop("disabled", false);
 			}else if (e.target.id === 'dl'){
 				return;
 			}
