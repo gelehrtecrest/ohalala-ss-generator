@@ -384,7 +384,8 @@ function DownloadStart(){
 		document.getElementById("newImg").src = base64;
 
 		var blob = Base64toBlob(base64);
-		document.getElementById("dlImg").href = window.URL.createObjectURL(blob);
+		const url = window.URL.createObjectURL(blob);
+		document.getElementById("dlImg").href = url;
 		document.getElementById("dlImg").download = filename;
 
 		//  ダウンロード開始
@@ -395,6 +396,7 @@ function DownloadStart(){
 			// Chrome, Firefox, Edge
 			document.getElementById("dlImg").click();
 		}
+		window.URL.revokeObjectURL(url);
 	}
 }
 
