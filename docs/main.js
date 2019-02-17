@@ -283,7 +283,9 @@
 
 			//画像操作時は再描画を行う
 			if(imageIni.imageData !== null){
+				$('#alert').text('合成作業開始中です。');
 				imageIni.makeImage();
+				$('#alert').text('合成完了です！');
 			}else{
 				$('#alert').text('スクリーンショットを入力してから画像生成を行ってください');
 			}
