@@ -241,8 +241,7 @@
 		}
 
 		//ボタンイベントまとめ
-		/*
-		$('#update').click(function(){
+		$(document).on("click", "#update", function(){
 			alert('test');
 			//画像操作時は再描画を行う
 			if(imageIni.imageData !== null){
@@ -254,9 +253,7 @@
 			//画面操作時はURLを再生成する
 			write_settingurl(imageIni);
 		});
-		*/
 		$('.btn').on('click', function(e){
-			alert('現在メンテ中です')
 			if (e.target.id === 'update'){
 			}else if (e.target.id === 'up'){
 				imageIni.yPos -= 1;
