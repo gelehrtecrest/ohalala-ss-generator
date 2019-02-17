@@ -242,6 +242,7 @@
 
 		//ボタンイベントまとめ
 		$('#update').click(function(){
+			alert('test');
 			//画像操作時は再描画を行う
 			if(imageIni.imageData !== null){
 				imageIni.makeImage();
