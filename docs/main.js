@@ -241,7 +241,7 @@
 		}
 
 		//ボタンイベントまとめ
-		$(document).on('click', '#update', function(){
+		$('#update').click(function(){
 			//画像操作時は再描画を行う
 			if(imageIni.imageData !== null){
 				imageIni.makeImage();
