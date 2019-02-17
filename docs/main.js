@@ -416,7 +416,7 @@ function DownloadStart(){
 			// IE
 			window.navigator.msSaveBlob(Base64toBlob(base64), filename);
 		} else {
-			#('#alert').text("Chromeなど");
+			$('#alert').text("Chromeなど");
 			// Chrome, Firefox, Edge
 			document.getElementById("dlImg").click();
 		}
