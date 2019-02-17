@@ -111,15 +111,15 @@
 		}
 
 		// logourlが使えない場合、UIを一部隠す
-		if(!flag_b){
-			$("#no_ie_edge").hide();
-		}
+		//if(!flag_b){
+		//	$("#no_ie_edge").hide();
+		//}
 
 		//設定のデフォルト値
-		if(flag_b){
-			$('#logourl').val('https://pbs.twimg.com/media/C2CtwVgUsAAaz86.png');
-			loadlogocanvas('https://pbs.twimg.com/media/C2CtwVgUsAAaz86.png', false);
-		}
+		//if(flag_b){
+			$('#logourl').val('./default.png');
+			loadlogocanvas('./default.png', false);
+		//}
 	
 		//ロゴURL変更時の処理
 		$(document).on('input', '#logourl', function() {
@@ -142,7 +142,7 @@
 		var imageIni = {
 			xPos : 2,
 			yPos : 2,
-			Scale : -5,
+			Scale : -2,
 			rotation : 0,
 			alpha : 1.0,
 			imageData : null,
@@ -344,13 +344,13 @@
 		//Canvas Download
 		$('#btnDownload').on("click", function() {
 			$('#alert').text('ダウンロード ボタンクリック');
-			if($('input[name=logo]:checked').val() === 'local'){
+			//if($('input[name=logo]:checked').val() === 'local'){
 				DownloadStart();
-			} else if($('input[name=logo]:checked').val() === 'local_white'){
-				DownloadStart();
-			} else {
-				alert('ロゴがURL指定のため、ダウンロードボタンは使用できません。')
-			}
+			//} else if($('input[name=logo]:checked').val() === 'local_white'){
+			//	DownloadStart();
+			//} else {
+			//	alert('ロゴがURL指定のため、ダウンロードボタンは使用できません。')
+			//}
 		});
 	});
 
@@ -420,7 +420,13 @@ function DownloadStart(){
 		var filename = 'download_' + year + month + day + hour + min + sec + '.png';
 
 		var ctx = cve.getContext('2d');
-		var base64 = cve.toDataURL();
+		var base64;
+		try {
+			base64 = cve.toDataURL();
+		}catch(e) {
+			alert("ロゴが外部URLをしているため、ダウンロードボタンを使用できません。")
+			return;
+		}
 		document.getElementById("newImg").src = base64;
 
 		var blob = Base64toBlob(base64);
@@ -434,7 +440,6 @@ function DownloadStart(){
 			// IE
 			window.navigator.msSaveBlob(Base64toBlob(base64), filename);
 		} else {
-			$('#alert').text("Chromeなど");
 			// Chrome, Firefox, Edge
 			document.getElementById("dlImg").click();
 		}
