@@ -184,14 +184,17 @@
 
 		//ロゴ画像読込
 		$('#logogetfile').change(function (){
+			alert('ロゴ読み込み開始')
 			//読み込み
 			var fileList =$('#logogetfile').prop('files');
 			var reader = new FileReader();
 			reader.readAsDataURL(fileList[0]);
 			//読み込み後
 			$(reader).on('load',function(){
+				alert('ロゴ読み込み完了');
 				imageIni.logoImageData = reader.result;
 				loadlogocanvas(reader.result, false);
+				alert('キャンバスロード');
 			});
 		});
 
