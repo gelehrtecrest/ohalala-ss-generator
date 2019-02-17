@@ -17,8 +17,20 @@
 				var baseImg = new Image();
 				var canvas = document.getElementById('canvas');
 				$('#alert').text('キャンバスに書き込んでいます');
-				//baseImg.src = canvas.toDataURL();
 				baseImg.src = logoImageData;
+				$('#alert').text('URL化しています');
+				img = new createjs.Bitmap(baseImg);
+				$('#alert').text('Bitmap化しました');
+			} else {
+				img = null;
+			}
+		} else if($('input[name=logo]:checked').val() === 'local_white'){
+			$('#alert').text('ローカルファイルです');
+			if(logoImageData !== null) {
+				var baseImg = new Image();
+				var canvas = document.getElementById('canvas');
+				$('#alert').text('キャンバスに書き込んでいます');
+				baseImg.src = canvas.toDataURL();
 				$('#alert').text('URL化しています');
 				img = new createjs.Bitmap(baseImg);
 				$('#alert').text('Bitmap化しました');
@@ -176,6 +188,9 @@
 				if(t['1'] == 'local'){
 					$('input[name=logo]').val(['local']);
 				}
+				if(t['1'] == 'local_white'){
+					$('input[name=logo]').val(['local_white']);
+				}
 			} else if(t['0'] == 'title'){
 				$('title').text(decodeURIComponent(t['1']));
 				$('h1').text(decodeURIComponent(t['1']));
@@ -330,9 +345,9 @@
 		$('#btnDownload').on("click", function() {
 			$('#alert').text('ダウンロード ボタンクリック');
 			if($('input[name=logo]:checked').val() === 'local'){
-				$('#alert').text('ダウンロード開始');
 				DownloadStart();
-				$('#alert').text('ダウンロード終了');
+			} else if($('input[name=logo]:checked').val() === 'local_white'){
+				DownloadStart();
 			} else {
 				alert('ロゴがURL指定のため、ダウンロードボタンは使用できません。')
 			}
@@ -369,6 +384,9 @@
 		//ロゴ読み出し場所
 		if($('input[name=logo]:checked').val() === 'local'){
 			url = url + '&logo=local';
+		}
+		if($('input[name=logo]:checked').val() === 'local_white'){
+			url = url + '&logo=local_white';
 		}
 		//タイトル
 		url = url + '&title=' + encodeURIComponent($('title').text());
