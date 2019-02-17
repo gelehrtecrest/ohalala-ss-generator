@@ -328,6 +328,7 @@
 
 		//Canvas Download
 		$('#btnDownload').on("click", function() {
+			$('#alert').text('ダウンロード ボタンクリック');
 			if($('input[name=logo]:checked').val() === 'local'){
 				$('#alert').text('ダウンロード開始');
 				DownloadStart();
