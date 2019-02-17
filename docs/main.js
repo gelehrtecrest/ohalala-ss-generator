@@ -241,7 +241,19 @@
 		}
 
 		//ボタンイベントまとめ
-		$('.btn').on('click',function(e){
+		$(document).on('click', '#update', function(){
+			//画像操作時は再描画を行う
+			if(imageIni.imageData !== null){
+				imageIni.makeImage();
+			}else{
+				$('#alert').text('スクリーンショットを入力してから画像生成を行ってください');
+			}
+
+			//画面操作時はURLを再生成する
+			write_settingurl(imageIni);
+		});
+		/*
+		$('.btn').on('click', function(e){
 			if (e.target.id === 'update'){
 			}else if (e.target.id === 'up'){
 				imageIni.yPos -= 1;
@@ -291,6 +303,7 @@
 			//画面操作時はURLを再生成する
 			write_settingurl(imageIni);
 		});
+		*/
 
 		$('input[name=logo]').click(function() {
 			//チェックボックス操作時は再描画を行う
