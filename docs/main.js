@@ -17,7 +17,8 @@
 				var baseImg = new Image();
 				var canvas = document.getElementById('canvas');
 				$('#alert').text('キャンバスに書き込んでいます');
-				baseImg.src = canvas.toDataURL();
+				//baseImg.src = canvas.toDataURL();
+				baseImg.src = logoImageData;
 				$('#alert').text('URL化しています');
 				img = new createjs.Bitmap(baseImg);
 				$('#alert').text('Bitmap化しました');
