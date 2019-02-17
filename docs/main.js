@@ -327,9 +327,11 @@
 		write_settingurl(imageIni);
 
 		//Canvas Download
-		$('#btnDownload').click(function() {
+		$('#btnDownload').on("click", function() {
 			if($('input[name=logo]:checked').val() === 'local'){
+				$('#alert').text('ダウンロード開始');
 				DownloadStart();
+				$('#alert').text('ダウンロード終了');
 			} else {
 				alert('ロゴがURL指定のため、ダウンロードボタンは使用できません。')
 			}
@@ -407,11 +409,13 @@ function DownloadStart(){
 		document.getElementById("dlImg").href = url;
 		document.getElementById("dlImg").download = filename;
 
+		$('#alert').text("ブラウザ判定");
 		//  ダウンロード開始
 		if (window.navigator.msSaveBlob) {
 			// IE
 			window.navigator.msSaveBlob(Base64toBlob(base64), filename);
 		} else {
+			#('#alert').text("Chromeなど");
 			// Chrome, Firefox, Edge
 			document.getElementById("dlImg").click();
 		}
