@@ -129,7 +129,9 @@
 			},
 			makeImage : function(){
 				if(this.imageData !== null) {
+					$('#alert').text('合成画像読み込み中です。');
 					loadImage(this.imageData, this.logoImageData);
+					$('#alert').text('合成画像 合成中です。');
 					genImage(this);
 				}
 			}
