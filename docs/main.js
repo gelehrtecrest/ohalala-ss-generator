@@ -46,32 +46,42 @@
 
 	//ロゴを合成する処理
 	function genImage (imageIni){
+		$('#alert').text('合成作業開始です ステップ 1');
 		//合成画像の設定
 		//回転
 		img.rotation = imageIni.rotation;
 		//回転の中心は、画像の中央
 		img.regX = img.getBounds().width / 2;
 		img.regY = img.getBounds().height / 2;
-
+		$('#alert').text('合成作業開始です ステップ 2');
+	
 		//上下は10ピクセルごと移動
 		// 中央点からの補正
 		//拡縮は10％ずつと過程 = いずれ定数化する必要がある
 		img.x = imageIni.xPos * 10 + img.getBounds().width / 2 * (1 + imageIni.Scale / 10);
 		img.y = imageIni.yPos * 10 + img.getBounds().height / 2 * (1 + imageIni.Scale / 10);
+		$('#alert').text('合成作業開始です ステップ 3');
 
 		//拡縮は10％ずつ
 		img.scaleX = img.scaleX * (1 + imageIni.Scale / 10);
 		img.scaleY = img.scaleY * (1 + imageIni.Scale / 10);
+		$('#alert').text('合成作業開始です ステップ 4');
+
 
 		//透明化
 		img.alpha = imageIni.alpha;	
+		$('#alert').text('合成作業開始です ステップ 5');
+
 
 		//ステージ生成
 		stage.addChild(img2);
 		stage.addChild(img);
+		$('#alert').text('合成作業開始です ステップ 6');
+
 
 		//ステージ反映
 		stage.update();
+		$('#alert').text('合成作業開始です ステップ 7');
 	}
 
 	$(function(){
