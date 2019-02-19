@@ -353,6 +353,9 @@
 			//}
 			$('#alert').text('ダウンロード処理終了');
 		});
+		$('#btnNewWindow').on("click", function() {
+			NewWindow();
+		});
 	});
 
 	//画像先読み込み
@@ -461,3 +464,19 @@ function Base64toBlob(base64)
 	return blob;
 }
 
+function NewWindow(){
+	
+	var cve = document.getElementById("result");
+	if (cve.getContext) {
+		var dataUrl;
+		try {
+			dataUrl = cve.toDataURL();
+		}catch(e) {
+			alert("ロゴが外部URLをしているため、ダウンロードボタンを使用できません。")
+			return;
+		}
+		var w = window.open('about:blank');
+		w.document.write("<img src='" + dataUrl + "'/>");
+	} else {
+	}
+}
