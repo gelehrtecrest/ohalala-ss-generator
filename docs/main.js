@@ -336,7 +336,7 @@
 			console.log(editgenerator_button);
 			editgenerator(editgenerator_button);
 			if( pushing_flag == 1 ){
-				setTimeout(mouse_push_hold, 200);
+				setTimeout(mouse_push_hold, 100);
 			}
 		};
 
