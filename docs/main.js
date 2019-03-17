@@ -339,6 +339,7 @@
 			}
 		};
 
+		// PC用
 		$(".editgenerator").mousedown(function(e){
 			editgenerator_button = e.target.id;
 			pushing_flag = 1;
@@ -354,6 +355,21 @@
 			pushing_flag = 0;
 			clearTimeout(mouse_push_hold);
 		});
+
+		//スマホ用
+		$(".editgenerator").bind('touchstart', function(e){
+			editgenerator_button = e.target.id;
+			pushing_flag = 1;
+			setTimeout(mouse_push_hold, 1);
+			return false;
+		});
+		$(".editgenerator").bind('touchend', function(e){
+			pushing_flag = 0;
+			return false;
+		});
+
+
+
 
 		$('input[name=logo]').click(function() {
 			//チェックボックス操作時は再描画を行う
