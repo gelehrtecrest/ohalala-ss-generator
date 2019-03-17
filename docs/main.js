@@ -273,43 +273,44 @@
 		}
 
 		//ボタンイベントまとめ
-		$('.btn').on('click', function(e){
-			if (e.target.id === 'update'){
-			}else if (e.target.id === 'up'){
+		var editgenerator_button = "";
+		function editgenerator(id){
+			if (id === 'update'){
+			}else if (id === 'up'){
 				imageIni.yPos -= 1;
-			}else if (e.target.id === 'down'){
+			}else if (id === 'down'){
 				imageIni.yPos += 1;
-			}else if (e.target.id === 'left'){
+			}else if (id === 'left'){
 				imageIni.xPos -= 1;
-			}else if (e.target.id === 'right') {
+			}else if (id === 'right') {
 				imageIni.xPos += 1;
-			}else if (e.target.id === 'zoomin') {
+			}else if (id === 'zoomin') {
 				imageIni.Scale += 1;
-			}else if (e.target.id === 'zoomout') {
+			}else if (id === 'zoomout') {
 				imageIni.Scale -= 1;
-			}else if (e.target.id === 'rotation_r') {
+			}else if (id === 'rotation_r') {
 				imageIni.rotation += 7.5;
-			}else if (e.target.id === 'rotation_l') {
+			}else if (id === 'rotation_l') {
 				imageIni.rotation -= 7.5;
-			}else if (e.target.id === 'alpha_up') {
+			}else if (id === 'alpha_up') {
 				imageIni.alpha += 0.1;
 				if(imageIni.alpha >= 0.9){
 					imageIni.alpha = 1.0;
 					$('#alpha_up').prop("disabled", true);
 				}
 				$('#alpha_down').prop("disabled", false);
-			}else if (e.target.id === 'alpha_down') {
+			}else if (id === 'alpha_down') {
 				imageIni.alpha -= 0.1;
 				if(imageIni.alpha <= 0.1){
 					imageIni.alpha = 0.0;
 					$('#alpha_down').prop("disabled", true);
 				}
 				$('#alpha_up').prop("disabled", false);
-			}else if (e.target.id === 'reset'){
+			}else if (id === 'reset'){
 				imageIni.resetImage();
 				$('#alpha_up').prop("disabled", true);
 				$('#alpha_down').prop("disabled", false);
-			}else if (e.target.id === 'dl'){
+			}else if (id === 'dl'){
 				return;
 			}
 
@@ -324,6 +325,34 @@
 
 			//画面操作時はURLを再生成する
 			write_settingurl(imageIni);
+		}
+		//$('.btn').on('click', function(e){
+		//	editgenerator_button = e.target.id;
+		//	editgenerator(editgenerator_button);
+		//});
+
+		var pushing_flag = 0;
+		var mouse_push_hold = function(){
+			editgenerator(editgenerator_button);
+			if( pushing_flag == 1 ){
+				setTimeout(mouse_push_hold, 100);
+			}
+		};
+
+		$(".editgenerator").mousedown(function(e){
+			editgenerator_button = e.target.id;
+			pushing_flag = 1;
+			setTimeout(mouse_push_hold, 1);
+			return false;
+		}).mouseup(function(){
+			pushing_flag = 0;
+			clearTimeout(mouse_push_hold);
+		}).mouseleave(function(){
+			pushing_flag = 0;
+			clearTimeout(mouse_push_hold);
+		}).mouseover(function(){
+			pushing_flag = 0;
+			clearTimeout(mouse_push_hold);
 		});
 
 		$('input[name=logo]').click(function() {
