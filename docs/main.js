@@ -333,9 +333,10 @@
 
 		var pushing_flag = 0;
 		var mouse_push_hold = function(){
+			console.log(editgenerator_button);
 			editgenerator(editgenerator_button);
 			if( pushing_flag == 1 ){
-				setTimeout(mouse_push_hold, 100);
+				setTimeout(mouse_push_hold, 200);
 			}
 		};
 
