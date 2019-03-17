@@ -274,7 +274,14 @@
 
 		//ボタンイベントまとめ
 		var editgenerator_button = "";
+		var flag = 0;
 		function editgenerator(id){
+			if(flag == 0){
+				flag = 1;
+				return;
+			} else {
+				flag = 0;
+			}
 			if (id === 'update'){
 			}else if (id === 'up'){
 				imageIni.yPos -= 1;
