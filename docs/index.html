@@ -10,7 +10,7 @@
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-		<script src="main.js?20190317a"></script>
+		<script src="main.js?20190321"></script>
 		<!-- Global Site Tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-101529000-3"></script>
 		<script>
@@ -85,7 +85,25 @@
 						    </script>
 			<hr />
 			<div class="alert alert-success">Step3.(必須) 合成ボタンを押すとロゴが貼り付けられます。ロゴの位置・サイズも変更できます。</div>
+			<div class="module">
+				<h3>以下のボタンで操作後ダウンロードしてください。</h3>
+				<div style="display:none">
+					<img id="newImg">
+					<a href="" id="dlImg"></a>
+				</div>
+				<h5>
+					ダウンロードボタンからダウンロード可能です。
+					<button id="btnDownload" class="btn btn-primary">ダウンロード</button>
+				</h5>
+				<h5>
+					スマホなどの場合は、別ウィンドウを開いた方が保存しやすいかもしれません。
+					<button id="btnNewWindow" class="btn btn-primary">別ウィンドウを開く</button>
+				</h5>
+				<h5>もしダウンロードボタンが使えない場合は、生成結果を右クリックしてダウンロードしてください。</h5>
+				<div id="alert" class="alert alert-warning" role="alert"></div>
+			</div>
 			<div class="container">
+				<h3>ロゴの操作</h3>
 				<div class="row">
 					<button id="update" class="col-sm-2 editgenerator btn btn-primary">合成</button>
 					<button id="reset" class="col-sm-2 editgenerator btn btn-warning">リセット</button>
@@ -102,21 +120,6 @@
 				</div>
 			</div>
 			<div class="module">
-				<h3>生成結果</h3>
-				<div style="display:none">
-					<img id="newImg">
-					<a href="" id="dlImg"></a>
-				</div>
-				<h5>
-					ダウンロードボタンからダウンロード可能です。
-					<button id="btnDownload" class="btn btn-primary">ダウンロード</button>
-				</h5>
-				<h5>
-					スマホなどの場合は、別ウィンドウを開いた方が保存しやすいかもしれません。
-					<button id="btnNewWindow" class="btn btn-primary">別ウィンドウを開く</button>
-				</h5>
-				<h5>もしダウンロードボタンが使えない場合は、生成結果を右クリックしてダウンロードしてください。</h5>
-				<div id="alert" class="alert alert-warning" role="alert"></div>
 				<div class="container canvas-stage">
 					<canvas id="result" width="100%" height="100%"></canvas>
 				</div>

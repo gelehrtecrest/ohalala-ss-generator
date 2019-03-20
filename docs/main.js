@@ -70,14 +70,19 @@
 	
 		//上下は10ピクセルごと移動
 		// 中央点からの補正
+		//拡縮にlog計算で補正。拡大するときに一気に拡大しないように
+		var scale = 1 + imageIni.Scale / 10;
+		if(scale >= 1){
+			scale = 1 + Math.log10(scale);
+		}
 		//拡縮は10％ずつと過程 = いずれ定数化する必要がある
-		img.x = imageIni.xPos * 10 + img.getBounds().width / 2 * (1 + imageIni.Scale / 10);
-		img.y = imageIni.yPos * 10 + img.getBounds().height / 2 * (1 + imageIni.Scale / 10);
+		img.x = imageIni.xPos * 10 + img.getBounds().width / 2 * scale;
+		img.y = imageIni.yPos * 10 + img.getBounds().height / 2 * scale;
 		$('#alert').text('合成作業開始です ステップ 3');
 
 		//拡縮は10％ずつ
-		img.scaleX = img.scaleX * (1 + imageIni.Scale / 10);
-		img.scaleY = img.scaleY * (1 + imageIni.Scale / 10);
+		img.scaleX = img.scaleX * scale;
+		img.scaleY = img.scaleY * scale;
 		$('#alert').text('合成作業開始です ステップ 4');
 
 
