@@ -11,6 +11,7 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<script src="main.js?20190321"></script>
+		<script src="language.js"></script>
 		<!-- Global Site Tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-101529000-3"></script>
 		<script>
@@ -23,29 +24,56 @@
 		<link href="style.css" rel="stylesheet">
 	</head>
 	<body>
+		<language initial="ja" lang="ja,en,ch,kr"></language>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>おはララジェネレータ</h1>
-				<p id="comment">おはララロゴを合成するだけの簡易的なジェネレータです。</p>
-				<h2>エオロゴ保管庫</h2>
-				<p>その他各種ロゴを使用できます。<a href="https://eingelehrte.wixsite.com/eologo" target="_blank">エオロゴ保管庫</a>を公開しました。こちらのロゴも使用できます。</p>
-				<h2>FF14スクリーンショット加工ツール</h2>
-				<p>画像切り抜きなどをしておはララ画像を作れるように新たなツール<a href="https://gelehrtecrest.github.io/ff14ssedit/" target="_blank">FF14スクリーンショット加工ツール</a>を公開しました。</p>
+				<div class="pull-right">
+					<a class="btn btn-primary language" href="#ja">日本語</a>
+					<a class="btn btn-primary language" href="#en">English</a>
+					<a class="btn btn-primary language" href="#ch">中国</a>
+					<a class="btn btn-primary language" href="#kr">한국</a>
+				</div>
+				<h1 class="lang" language="ja">おはララジェネレータ</h1>
+				<h1 class="lang" language="en">Ohalala generator</h1>
+				<h1 class="lang" language="ch">おはララ 发电机</h1>
+				<h1 class="lang" language="kr">おはララ 발전기</h1>
+				<p id="comment" class="lang" language="ja">おはララロゴを合成するだけの簡易的なジェネレータです。</p>
+				<p class="lang" language="en">This is a simple generator that put the ohalala logo on the screenshot.</p>
+				<p class="lang" language="ch">这是一个简单的生成器，将おはララ徽标放在屏幕截图上。</p>
+				<p class="lang" language="kr">이것은 스크린 샷에 おはララ 로고를 넣는 간단한 생성기입니다.</p>
+				<h2 class="lang" language="ja">エオロゴ保管庫</h2>
+				<p class="lang" language="ja">その他各種ロゴを使用できます。<a href="https://eingelehrte.wixsite.com/eologo" target="_blank">エオロゴ保管庫</a>を公開しました。こちらのロゴも使用できます。</p>
+				<h2 class="lang" language="ja">FF14スクリーンショット加工ツール</h2>
+				<p class="lang" language="ja">画像切り抜きなどをしておはララ画像を作れるように新たなツール<a href="https://gelehrtecrest.github.io/ff14ssedit/" target="_blank">FF14スクリーンショット加工ツール</a>を公開しました。</p>
 			</div>
 		</div>
 		<div class="container">
-			<div class="alert alert-success">Step1.(必須) 合成したいローカル上のスクリーンショットをアップロードします。</div>
+			<div class="alert alert-success lang" language="ja">Step1.(必須) 合成したいローカル上のスクリーンショットをアップロードします。</div>
+			<div class="alert alert-success lang" language="en">Step1.(Required) Upload the screenshot in the local PC to this site.</div>
+			<div class="alert alert-success lang" language="ch">Step1.(需要) 将本地PC中的屏幕截图上传到该站点。</div>
+			<div class="alert alert-success lang" language="kr">Step1.(필수) 로컬 PC의 스크린 샷을 사이트에 업로드하십시오.</div>
 			<dl class="table">
-			<dd><label for="exampleInputEmail1">合成したいスクリーンショット</label></dd>
+			<dd>
+				<label for="exampleInputEmail1" class="lang" language="ja">合成したいスクリーンショット</label>
+				<label for="exampleInputEmail1" class="lang" language="en">Your screenshot</label>
+				<label for="exampleInputEmail1" class="lang" language="ch">你的截图</label>
+				<label for="exampleInputEmail1" class="lang" language="kr">내 스크린 샷</label>
+			</dd>
 			<dd><span><img src="" id="preview"></span><dd>
 			<dd><input type="file" accept="image/*" id="getfile"><dd>
 			</dl>
-			<div class="alert alert-success">Step2.(任意) 合成したいロゴを選択します。</div>
+			<div class="alert alert-success lang" language="ja">Step2.(任意) 合成したいロゴを選択します。</div>
+			<div class="alert alert-success lang" language="en">Step2. Select the logo.</div>
+			<div class="alert alert-success lang" language="ch">Step2. 选择徽标。</div>
+			<div class="alert alert-success lang" language="kr">Step2. 로고를 선택하십시오.</div>
 			<div id="no_ie_edge" class="row hidden-xs">
 				<div class="col-sm-1"><input type="radio" name="logo" value="url" checked="checked"></div>
 				<div class="col-sm-11">
 					<div class="form-group">
-						<label for="exampleInputEmail1">合成したい画像のURL</label>
+						<label for="exampleInputEmail1" class="lang" language="ja">合成したい画像のURL</label>
+						<label for="exampleInputEmail1" class="lang" language="en">URL</label>
+						<label for="exampleInputEmail1" class="lang" language="ch">URL</label>
+						<label for="exampleInputEmail1" class="lang" language="kr">URL</label>
 						<input type="text" class="form-control" id="logourl" placeholder="URL">
 					</div>
 				</div>
@@ -54,7 +82,12 @@
 				<div class="col-sm-1"><input type="radio" name="logo" value="local"></div>
 				<div class="col-sm-11">
 					<dl class="table">
-						<dd><label for="exampleInputEmail1">合成したいロゴ</label></dd>
+						<dd>
+							<label for="exampleInputEmail1" class="lang" language="ja">合成したいロゴファイル</label>
+							<label for="exampleInputEmail1" class="lang" language="en">The logo file.</label>
+							<label for="exampleInputEmail1" class="lang" language="ch">徽标文件。</label>
+							<label for="exampleInputEmail1" class="lang" language="kr">로고 파일.</label>
+						</dd>
 						<dd><input type="file" accept="image/*" id="logogetfile"><dd>
 					</dl>
 				</div>
@@ -63,7 +96,12 @@
 				<div class="col-sm-1"><input type="radio" name="logo" value="local_white"></div>
 				<div class="col-sm-11">
 					<dl class="table">
-						<dd><label for="exampleInputEmail1">合成したいロゴ(白透過)</label></dd>
+						<dd>
+							<label for="exampleInputEmail1" class="lang" language="ja">合成したいロゴファイル(白透過)</label>
+							<label for="exampleInputEmail1" class="lang" language="en">The logo file. (for the white background)</label>
+							<label for="exampleInputEmail1" class="lang" language="ch">徽标文件。(为白色背景)</label>
+							<label for="exampleInputEmail1" class="lang" language="kr">로고 파일.(흰색 배경에 대한)</label>
+						</dd>
 						<dd><input type="file" accept="image/*" id="logogetfilealpha"><dd>
 					</dl>
 				</div>
@@ -72,7 +110,7 @@
 				<canvas id="canvas" width="100%" height="100%" style="display:none;"></canvas>
 			</div>
 			<hr />
-			<p>広告</p>
+			<p>AD</p>
 			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 			<!-- おはララジェネレータ レスポンシブ -->
 			<ins class="adsbygoogle"
@@ -84,7 +122,10 @@
 (adsbygoogle = window.adsbygoogle || []).push({});
 						    </script>
 			<hr />
-			<div class="alert alert-success">Step3.(必須) 合成ボタンを押すとロゴが貼り付けられます。ロゴの位置・サイズも変更できます。</div>
+			<div class="alert alert-success lang" language="ja">Step3.(必須) 合成ボタンを押すとロゴが貼り付けられます。ロゴの位置・サイズも変更できます。</div>
+			<div class="alert alert-success lang" language="en">Step3. Push the "Put" button, and generate the ohalala screenshot.</div>
+			<div class="alert alert-success lang" language="ch">Step3. 按“放置”按钮，生成おはララ屏幕截图。</div>
+			<div class="alert alert-success lang" language="kr">Step3. '넣기'버튼을 누르고 おはララ 스크린 샷을 생성합니다.</div>
 			<div class="module">
 				<h3>以下のボタンで操作後ダウンロードしてください。</h3>
 				<div style="display:none">
@@ -93,30 +134,59 @@
 				</div>
 				<h5>
 					ダウンロードボタンからダウンロード可能です。
-					<button id="btnDownload" class="btn btn-primary">ダウンロード</button>
+					<button id="btnDownload" class="btn btn-primary lang" language="ja">ダウンロード</button>
+					<button id="btnDownload" class="btn btn-primary lang" language="en">Download</button>
+					<button id="btnDownload" class="btn btn-primary lang" language="ch">下载</button>
+					<button id="btnDownload" class="btn btn-primary lang" language="kr">다운로드</button>
 				</h5>
 				<h5>
 					スマホなどの場合は、別ウィンドウを開いた方が保存しやすいかもしれません。
-					<button id="btnNewWindow" class="btn btn-primary">別ウィンドウを開く</button>
+					<button id="btnNewWindow" class="btn btn-primary lang" language="ja">別ウィンドウを開く</button>
+					<button id="btnNewWindow" class="btn btn-primary lang" language="en">Open another window</button>
+					<button id="btnNewWindow" class="btn btn-primary lang" language="ch">打开另一个窗口</button>
+					<button id="btnNewWindow" class="btn btn-primary lang" language="kr">다른 창을 엽니 다</button>
 				</h5>
 				<h5>もしダウンロードボタンが使えない場合は、生成結果を右クリックしてダウンロードしてください。</h5>
 				<div id="alert" class="alert alert-warning" role="alert"></div>
 			</div>
 			<div class="container">
-				<h3>ロゴの操作</h3>
+				<h3 class="lang" language="ja">ロゴの操作</h3>
+				<h3 class="lang" language="en">Operate the logo</h3>
+				<h3 class="lang" language="ch">操作徽标</h3>
+				<h3 class="lang" language="kr">로고 운영</h3>
 				<div class="row">
-					<button id="update" class="col-sm-2 editgenerator btn btn-primary">合成</button>
-					<button id="reset" class="col-sm-2 editgenerator btn btn-warning">リセット</button>
+					<button id="update" class="col-sm-2 editgenerator btn btn-primary">
+						<div class="lang editgenerator" language="ja">合成</div>
+						<div class="lang editgenerator" language="en">Put</div>
+						<div class="lang editgenerator" language="ch">放置</div>
+						<div class="lang editgenerator" language="kr">넣기</div>
+					</button>
+					<button id="reset" class="col-sm-2 editgenerator btn btn-warning">
+						<div class="lang editgenerator" language="ja">リセット</div>
+						<div class="lang editgenerator" language="en">Reset</div>
+						<div class="lang editgenerator" language="ch">重启</div>
+						<div class="lang editgenerator" language="kr">다시 놓기</div>
+					</button>
 					<button id="left" class="col-sm-2 editgenerator btn btn-default">←</button>
 					<button id="up" class="col-sm-2 editgenerator btn btn-default">↑</button>
 					<button id="down" class="col-sm-2 editgenerator btn btn-default">↓</button>
 					<button id="right" class="col-sm-2 editgenerator btn btn-default">→</button>
-					<button id="zoomin" class="col-sm-2 editgenerator btn btn-default">拡大</button>
-					<button id="zoomout" class="col-sm-2 editgenerator btn btn-default">縮小</button>
-					<button id="rotation_l" class="col-sm-2 editgenerator btn btn-default">左回転</button>
-					<button id="rotation_r" class="col-sm-2 editgenerator btn btn-default">右回転</button>
-					<button id="alpha_down" class="col-sm-2 editgenerator btn btn-default">薄く</button>
-					<button id="alpha_up" disabled class="col-sm-2 editgenerator btn btn-default">濃く</button>
+					<button id="zoomin" class="col-sm-2 editgenerator btn btn-default glyphicon glyphicon-resize-full"></button>
+					<button id="zoomout" class="col-sm-2 editgenerator btn btn-default glyphicon glyphicon-resize-small"></button>
+					<button id="rotation_l" class="col-sm-2 editgenerator btn btn-default glyphicon glyphicon-repeat" style="transform: scale(-1, 1);"></button>
+					<button id="rotation_r" class="col-sm-2 editgenerator btn btn-default glyphicon glyphicon-repeat"></button>
+					<button id="alpha_down" class="col-sm-2 editgenerator btn btn-default">
+						<div id="alpha_down" class="lang editgenerator" language="ja">薄く</div>
+						<div id="alpha_down" class="lang editgenerator" language="en">Thin</div>
+						<div id="alpha_down" class="lang editgenerator" language="ch">瘦</div>
+						<div id="alpha_down" class="lang editgenerator" language="kr">얇은</div>
+					</button>
+					<button id="alpha_up" disabled class="col-sm-2 editgenerator btn btn-default">
+						<div id="alpha_up" class="lang editgenerator" language="ja">濃く</div>
+						<div id="alpha_up" class="lang editgenerator" language="en">Dark</div>
+						<div id="alpha_up" class="lang editgenerator" language="ch">黑暗</div>
+						<div id="alpha_up" class="lang editgenerator" language="kr">진하게</div>
+					</button>
 				</div>
 			</div>
 			<div class="module">

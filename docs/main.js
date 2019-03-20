@@ -74,7 +74,7 @@
 		var scale = 1 + imageIni.Scale / 50;
 		if(scale > 0 || scale <= 1){
 			scale = scale * scale;
-		} else if(scale <=0 ){
+		} else if(scale <= 0){
 			scale = 0;
 		}
 		img.x = imageIni.xPos * 10 + img.getBounds().width / 2 * scale;
