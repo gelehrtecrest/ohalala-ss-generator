@@ -8,7 +8,7 @@
 	var stage;
 
 	//画像ロード
-	function loadImage (imageData, logoImageData){
+	function loadImage (imageData, logoImageData, imageIni){
 		//画像のロード
 		//ローカル
 		if($('input[name=logo]:checked').val() === 'local'){
@@ -27,13 +27,13 @@
 		} else if($('input[name=logo]:checked').val() === 'local_white'){
 			$('#alert').text('ローカルファイルです');
 			if(logoImageData !== null) {
-				var baseImg = new Image();
 				var canvas = document.getElementById('canvas');
-				$('#alert').text('キャンバスに書き込んでいます');
-				baseImg.src = canvas.toDataURL();
-				$('#alert').text('URL化しています');
-				img = new createjs.Bitmap(baseImg);
-				$('#alert').text('Bitmap化しました');
+				var baseImage = new Image();
+				baseImage.onload = function() {
+					img = new createjs.Bitmap(baseImage);
+					genImage(imageIni);
+				};
+				baseImage.src = canvas.toDataURL('image/png');
 			} else {
 				img = null;
 			}
@@ -60,6 +60,7 @@
 	//ロゴを合成する処理
 	function genImage (imageIni){
 		$('#alert').text('合成作業開始です ステップ 1');
+		console.log(img);
 		//合成画像の設定
 		//回転
 		img.rotation = imageIni.rotation;
@@ -162,7 +163,7 @@
 			makeImage : function(){
 				if(this.imageData !== null) {
 					$('#alert').text('合成画像読み込み中です。');
-					loadImage(this.imageData, this.logoImageData);
+					loadImage(this.imageData, this.logoImageData, this);
 					$('#alert').text('合成画像 合成中です。');
 					genImage(this);
 				}
@@ -422,7 +423,7 @@
 		baseImg.src = $('#logourl').val();
 		img = new createjs.Bitmap(baseImg);
 
-		loadImage(null, null);
+		loadImage(null, null, null);
 	});
 
 	// URL生成
