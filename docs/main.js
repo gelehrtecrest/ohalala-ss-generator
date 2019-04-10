@@ -32,6 +32,7 @@
 				baseImage.onload = function() {
 					img = new createjs.Bitmap(baseImage);
 					genImage(imageIni);
+					$('#alert').text('合成完了です！');
 				};
 				baseImage.src = canvas.toDataURL('image/png');
 			} else {
