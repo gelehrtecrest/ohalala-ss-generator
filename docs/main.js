@@ -282,6 +282,25 @@
 		//ボタンイベントまとめ
 		var editgenerator_button = "";
 		var flag = 0;
+		// 加速機能
+		const boost_limit = 5;
+		const boost_value = 3;
+		const boost_not_value = 1;
+		var boost_count = 0;
+		const boost_id_default = "boost";
+		var boost_id = boost_id_default;
+		function boost(id){
+			if(boost_id === id){
+				boost_count += 1;
+			} else {
+				boost_count = 0;
+				boost_id = id;
+			}
+			if(boost_count >= boost_limit){
+				return boost_value;
+			}
+			return boost_not_value;
+		}
 		function editgenerator(id){
 			if(flag == 0){
 				flag = 1;
@@ -291,30 +310,30 @@
 			}
 			if (id === 'update'){
 			}else if (id === 'up'){
-				imageIni.yPos -= 1;
+				imageIni.yPos -= 1*boost(id);
 			}else if (id === 'down'){
-				imageIni.yPos += 1;
+				imageIni.yPos += 1*boost(id);
 			}else if (id === 'left'){
-				imageIni.xPos -= 1;
+				imageIni.xPos -= 1*boost(id);
 			}else if (id === 'right') {
-				imageIni.xPos += 1;
+				imageIni.xPos += 1*boost(id);
 			}else if (id === 'zoomin') {
-				imageIni.Scale += 1;
+				imageIni.Scale += 1*boost(id);
 			}else if (id === 'zoomout') {
-				imageIni.Scale -= 1;
+				imageIni.Scale -= 1*boost(id);
 			}else if (id === 'rotation_r') {
-				imageIni.rotation += 7.5;
+				imageIni.rotation += 7.5*boost(id);
 			}else if (id === 'rotation_l') {
-				imageIni.rotation -= 7.5;
+				imageIni.rotation -= 7.5*boost(id);
 			}else if (id === 'alpha_up') {
-				imageIni.alpha += 0.1;
+				imageIni.alpha += 0.1*boost(id);
 				if(imageIni.alpha >= 0.9){
 					imageIni.alpha = 1.0;
 					$('#alpha_up').prop("disabled", true);
 				}
 				$('#alpha_down').prop("disabled", false);
 			}else if (id === 'alpha_down') {
-				imageIni.alpha -= 0.1;
+				imageIni.alpha -= 0.1*boost(id);
 				if(imageIni.alpha <= 0.1){
 					imageIni.alpha = 0.0;
 					$('#alpha_down').prop("disabled", true);
@@ -322,6 +341,7 @@
 				$('#alpha_up').prop("disabled", false);
 			}else if (id === 'reset'){
 				imageIni.resetImage();
+				boost(id)
 				$('#alpha_up').prop("disabled", true);
 				$('#alpha_down').prop("disabled", false);
 			}else if (id === 'dl'){
@@ -362,9 +382,11 @@
 		}).mouseup(function(){
 			pushing_flag = 0;
 			clearTimeout(mouse_push_hold);
+			boost(boost_id_default);
 		}).mouseleave(function(){
 			pushing_flag = 0;
 			clearTimeout(mouse_push_hold);
+			boost(boost_id_default);
 		}).mouseover(function(){
 			pushing_flag = 0;
 			clearTimeout(mouse_push_hold);
@@ -379,6 +401,7 @@
 		});
 		$(".editgenerator").bind('touchend', function(e){
 			pushing_flag = 0;
+			boost(boost_id_default);
 			return false;
 		});
 
