@@ -699,11 +699,11 @@
 
 			//画像操作時は再描画を行う
 			if(imageIni.imageData !== null){
-				$('#alert').text('合成作業開始中です。');
+				alertmeg('合成作業開始中です。');
 				imageIni.makeImage();
-				$('#alert').text('合成完了です！');
+				alertmeg('合成完了です！');
 			}else{
-				$('#alert').text('スクリーンショットを入力してから画像生成を行ってください');
+				alertmeg('スクリーンショットを入力してから画像生成を行ってください');
 			}
 
 			//画面操作時はURLを再生成する
@@ -762,7 +762,7 @@
 			if(imageIni.imageData !== null){
 				imageIni.makeImage();
 			}else{
-				$('#alert').text('スクリーンショットを入力してから画像生成を行ってください');
+				alertmeg('スクリーンショットを入力してから画像生成を行ってください');
 			}
 
 			//チェックボックス操作時はURLを再生成する
@@ -774,7 +774,7 @@
 
 		//Canvas Download
 		$('#btnDownload').on("click", function() {
-			$('#alert').text('ダウンロード ボタンクリック');
+			alertmeg('ダウンロード ボタンクリック');
 			//if($('input[name=logo]:checked').val() === 'local'){
 				DownloadStart();
 			//} else if($('input[name=logo]:checked').val() === 'local_white'){
@@ -782,7 +782,7 @@
 			//} else {
 			//	alert('ロゴがURL指定のため、ダウンロードボタンは使用できません。')
 			//}
-			$('#alert').text('ダウンロード処理終了');
+			alertmeg('ダウンロード処理終了');
 		});
 		$('#btnNewWindow').on("click", function() {
 			NewWindow();
@@ -869,7 +869,6 @@ function DownloadStart(){
 		document.getElementById("dlImg").href = url;
 		document.getElementById("dlImg").download = filename;
 
-		$('#alert').text("ブラウザ判定");
 		//  ダウンロード開始
 		if (window.navigator.msSaveBlob) {
 			// IE
@@ -910,4 +909,10 @@ function NewWindow(){
 		w.document.write("<img src='" + dataUrl + "'/>");
 	} else {
 	}
+}
+
+function alertmeg(text){
+	$("#alert").text(text);
+	$("#alertB").text(text);
+	$("#alertC").text(text);
 }
