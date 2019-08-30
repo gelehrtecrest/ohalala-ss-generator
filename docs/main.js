@@ -4,12 +4,15 @@
 
 	//画像関連
 	var img;
+	var imgB;
+	var imgC;
 	var img2;
 	var stage;
 
 	//画像ロード
-	function loadImage (imageData, logoImageData, imageIni){
+	function loadImage (imageData, logoImageData, logoImageDataB, logoImageDataC, imageIni){
 		//画像のロード
+		//tabA
 		//ローカル
 		if($('input[name=logo]:checked').val() === 'local'){
 			$('#alert').text('ローカルファイルです');
@@ -38,10 +41,91 @@
 			} else {
 				img = null;
 			}
-		} else { // URL
-			var baseImg = new Image();
-			baseImg.src = $('#logourl').val()
-			img = new createjs.Bitmap(baseImg);
+		} else if($('input[name=logo]:checked').val() === 'url'){
+			try{
+				var baseImg = new Image();
+				baseImg.src = $('#logourl').val()
+				img = new createjs.Bitmap(baseImg);
+			} catch {
+
+			}
+		}
+
+		//tabB
+		//ローカル
+		if($('input[name=logoB]:checked').val() === 'local'){
+			$('#alert').text('ローカルファイルです');
+			if(logoImageDataB !== null) {
+				var baseImg = new Image();
+				var canvas = document.getElementById('canvasB');
+				$('#alert').text('キャンバスに書き込んでいます');
+				baseImg.src = logoImageDataB;
+				$('#alert').text('URL化しています');
+				imgB = new createjs.Bitmap(baseImg);
+				$('#alert').text('Bitmap化しました');
+			} else {
+				imgB = null;
+			}
+		} else if($('input[name=logoB]:checked').val() === 'local_white'){
+			$('#alert').text('ローカルファイルです');
+			if(logoImageData !== null) {
+				var canvas = document.getElementById('canvasB');
+				var baseImage = new Image();
+				baseImage.onload = function() {
+					imgB = new createjs.Bitmap(baseImage);
+					genImage(imageIniB);
+					$('#alert').text('合成完了です！');
+				};
+				baseImage.src = canvas.toDataURL('image/png');
+			} else {
+				imgB = null;
+			}
+		} else if($('input[name=logoB]:checked').val() === 'url'){
+			try{
+				var baseImg = new Image();
+				baseImg.src = $('#logourlB').val()
+				imgB = new createjs.Bitmap(baseImg);
+			} catch {
+
+			}
+		}
+
+		//tabC
+		//ローカル
+		if($('input[name=logo]:checked').val() === 'local'){
+			$('#alert').text('ローカルファイルです');
+			if(logoImageDataC !== null) {
+				var baseImg = new Image();
+				$('#alert').text('キャンバスに書き込んでいます');
+				baseImg.src = logoImageDataC;
+				$('#alert').text('URL化しています');
+				imgC = new createjs.Bitmap(baseImg);
+				$('#alert').text('Bitmap化しました');
+			} else {
+				imgC = null;
+			}
+		} else if($('input[name=logo]:checked').val() === 'local_white'){
+			$('#alert').text('ローカルファイルです');
+			if(logoImageDataC !== null) {
+				var canvas = document.getElementById('canvasC');
+				var baseImage = new Image();
+				baseImage.onload = function() {
+					imgC = new createjs.Bitmap(baseImage);
+					genImage(imageIniC);
+					$('#alert').text('合成完了です！');
+				};
+				baseImage.src = canvas.toDataURL('image/png');
+			} else {
+				imgC = null;
+			}
+		} else if($('input[name=logoC]:checked').val() === 'url'){
+			try{
+				var baseImg = new Image();
+				baseImg.src = $('#logourlC').val()
+				imgC = new createjs.Bitmap(baseImg);
+			} catch {
+
+			}
 		}
 
 		//画像が選択されている時のみ合成
@@ -59,9 +143,43 @@
 	}
 
 	//ロゴを合成する処理
-	function genImage (imageIni){
+	function genImage (imageIni, imageIniB, imageIniC){
+		
+
+		//ステージ生成
+		stage.addChild(img2);
+		if(imgC != null){
+			try{
+				imgC = modifyImage(imgC, imageIniC);
+				stage.addChild(imgC);
+			} catch(e){
+			}
+		}
+		if(imgB != null){
+			try{
+				imgB = modifyImage(imgB, imageIniB);
+				stage.addChild(imgB);
+			} catch(e){
+			}
+		}
+		if(img != null){
+			try{
+				img = modifyImage(img, imageIni);
+				stage.addChild(img);
+			} catch(e){
+			}
+		}
+
+		$('#alert').text('合成作業開始です ステップ 6');
+
+
+		//ステージ反映
+		stage.update();
+		$('#alert').text('合成作業開始です ステップ 7');
+	}
+
+	function modifyImage(img, imageIni){
 		$('#alert').text('合成作業開始です ステップ 1');
-		console.log(img);
 		//合成画像の設定
 		//回転
 		img.rotation = imageIni.rotation;
@@ -91,22 +209,11 @@
 		//透明化
 		img.alpha = imageIni.alpha;	
 		$('#alert').text('合成作業開始です ステップ 5');
-
-
-		//ステージ生成
-		stage.addChild(img2);
-		stage.addChild(img);
-		$('#alert').text('合成作業開始です ステップ 6');
-
-
-		//ステージ反映
-		stage.update();
-		$('#alert').text('合成作業開始です ステップ 7');
+		return img;
 	}
 
 	$(function(){
 		var userAgent = window.navigator.userAgent.toLowerCase();
-		console.log(userAgent);
 		// IEとEdge判定
 		if(userAgent.indexOf('msie') != -1 || userAgent.indexOf('trident') != -1)  {
 			flag_b = false;
@@ -119,7 +226,7 @@
 
 		// logourlが使えない場合、UIを一部隠す
 		//if(!flag_b){
-		//	$("#no_ie_edge").hide();
+		//	$(".no_ie_edge").hide();
 		//}
 
 		//設定のデフォルト値
@@ -164,12 +271,61 @@
 			makeImage : function(){
 				if(this.imageData !== null) {
 					$('#alert').text('合成画像読み込み中です。');
-					loadImage(this.imageData, this.logoImageData, this);
+					loadImage(this.imageData, this.logoImageData, imageIniB.logoImageDataB, imageIniC.logoImageDataC, this);
 					$('#alert').text('合成画像 合成中です。');
-					genImage(this);
+					genImage(this, imageIniB, imageIniC);
 				}
 			}
 		};
+		var imageIniB = {
+			xPos : 2,
+			yPos : 2,
+			Scale : -5,
+			rotation : 0,
+			alpha : 1.0,
+			imageData : null,
+			logoImageDataB : null,
+			resetImage : function(){
+				this.xPos = 2;
+				this.yPos = 2;
+				this.Scale = -5;
+				this.rotation = 0;
+				this.alpha = 1.0;
+			},
+			makeImage : function(){
+				if(this.imageData !== null) {
+					$('#alert').text('合成画像読み込み中です。');
+					loadImage(this.imageData, imageIni.logoImageData, this.logoImageDataB, imageIniC.logoImageDataC, this);
+					$('#alert').text('合成画像 合成中です。');
+					genImage(imageIni, this, imageIniC);
+				}
+			}
+		};
+		var imageIniC = {
+			xPos : 2,
+			yPos : 2,
+			Scale : -5,
+			rotation : 0,
+			alpha : 1.0,
+			imageData : null,
+			logoImageDataC : null,
+			resetImage : function(){
+				this.xPos = 2;
+				this.yPos = 2;
+				this.Scale = -5;
+				this.rotation = 0;
+				this.alpha = 1.0;
+			},
+			makeImage : function(){
+				if(this.imageData !== null) {
+					$('#alert').text('合成画像読み込み中です。');
+					loadImage(this.imageData, imageIni.logoImageData, imageIniB.logoImageDataB, this.logoImageDataC, this);
+					$('#alert').text('合成画像 合成中です。');
+					genImage(imageIni, imageIniB, this);
+				}
+			}
+		};
+
 
 		//get情報
 		var url = location.href;
@@ -221,6 +377,7 @@
 			});
 		});
 
+		// tabA
 		//ロゴ画像読込
 		$('#logogetfile').change(function (){
 			//読み込み
@@ -279,6 +436,124 @@
 			image.src = url;
 		}
 
+		//tabB
+		//ロゴ画像読込
+		$('#logogetfileB').change(function (){
+			//読み込み
+			var fileList =$('#logogetfileB').prop('files');
+			var reader = new FileReader();
+			reader.readAsDataURL(fileList[0]);
+			//読み込み後
+			$(reader).on('load',function(){
+				imageIniB.logoImageDataB = reader.result;
+				loadlogocanvasB(reader.result, false);
+			});
+		});
+		
+		//ロゴ画像読込(白抜き)
+		$('#logogetfilealphaB').change(function (){
+			//読み込み
+			var fileList =$('#logogetfilealphaB').prop('files');
+			var reader = new FileReader();
+			reader.readAsDataURL(fileList[0]);
+			//読み込み後
+			$(reader).on('load',function(){
+				imageIniB.logoImageDataB = reader.result;
+				loadlogocanvasB(reader.result, true);
+			});
+		});
+		
+		function loadlogocanvasB(url, flag){
+			var image = new Image();
+			image.onload = function() {
+				$('#canvasB').attr({
+					'width': image.width,
+					'height': image.height
+				});
+				var canvas = document.getElementById('canvasB');
+				var context = canvas.getContext('2d');
+				context.drawImage(image, 0, 0);
+				var imageData = context.getImageData(0, 0, context.canvas.width, context.canvas.height);
+				var data = imageData.data;
+				for (var i = 0; i < data.length; i += 4) {
+					//各カラーチャンネルで、一番暗い値を取得
+					var minLuminance = 255;
+					if(data[i] < minLuminance)
+						minLuminance = data[i];
+					if(data[i + 1] < minLuminance)
+						minLuminance = data[i + 1];
+					if(data[i + 2] < minLuminance)
+						minLuminance = data[i + 2];
+		
+					if(flag){
+						//一番暗い値を、アルファチャンネルに反映(明るいところほど透明に)
+						data[i + 3] = 255 - minLuminance;
+					}
+				}
+				context.putImageData(imageData, 0, 0);
+			};
+			image.src = url;
+		}
+
+		//tabC
+		//ロゴ画像読込
+		$('#logogetfileC').change(function (){
+			//読み込み
+			var fileList =$('#logogetfileC').prop('files');
+			var reader = new FileReader();
+			reader.readAsDataURL(fileList[0]);
+			//読み込み後
+			$(reader).on('load',function(){
+				imageIniB.logoImageDataC = reader.result;
+				loadlogocanvasC(reader.result, false);
+			});
+		});
+		
+		//ロゴ画像読込(白抜き)
+		$('#logogetfilealphaC').change(function (){
+			//読み込み
+			var fileList =$('#logogetfilealphaC').prop('files');
+			var reader = new FileReader();
+			reader.readAsDataURL(fileList[0]);
+			//読み込み後
+			$(reader).on('load',function(){
+				imageIniB.logoImageDataC = reader.result;
+				loadlogocanvasC(reader.result, true);
+			});
+		});
+		
+		function loadlogocanvasC(url, flag){
+			var image = new Image();
+			image.onload = function() {
+				$('#canvasC').attr({
+					'width': image.width,
+					'height': image.height
+				});
+				var canvas = document.getElementById('canvasC');
+				var context = canvas.getContext('2d');
+				context.drawImage(image, 0, 0);
+				var imageData = context.getImageData(0, 0, context.canvas.width, context.canvas.height);
+				var data = imageData.data;
+				for (var i = 0; i < data.length; i += 4) {
+					//各カラーチャンネルで、一番暗い値を取得
+					var minLuminance = 255;
+					if(data[i] < minLuminance)
+						minLuminance = data[i];
+					if(data[i + 1] < minLuminance)
+						minLuminance = data[i + 1];
+					if(data[i + 2] < minLuminance)
+						minLuminance = data[i + 2];
+		
+					if(flag){
+						//一番暗い値を、アルファチャンネルに反映(明るいところほど透明に)
+						data[i + 3] = 255 - minLuminance;
+					}
+				}
+				context.putImageData(imageData, 0, 0);
+			};
+			image.src = url;
+		}
+
 		//ボタンイベントまとめ
 		var editgenerator_button = "";
 		var flag = 0;
@@ -309,6 +584,7 @@
 				flag = 0;
 			}
 			if (id === 'update'){
+			//tabA
 			}else if (id === 'up'){
 				imageIni.yPos -= 1*boost(id);
 			}else if (id === 'down'){
@@ -344,6 +620,78 @@
 				boost(id)
 				$('#alpha_up').prop("disabled", true);
 				$('#alpha_down').prop("disabled", false);
+			// tabB
+			}else if (id === 'upB'){
+				imageIniB.yPos -= 1*boost(id);
+			}else if (id === 'downB'){
+				imageIniB.yPos += 1*boost(id);
+			}else if (id === 'leftB'){
+				imageIniB.xPos -= 1*boost(id);
+			}else if (id === 'rightB') {
+				imageIniB.xPos += 1*boost(id);
+			}else if (id === 'zoominB') {
+				imageIniB.Scale += 1*boost(id);
+			}else if (id === 'zoomoutB') {
+				imageIniB.Scale -= 1*boost(id);
+			}else if (id === 'rotation_rB') {
+				imageIniB.rotation += 7.5*boost(id);
+			}else if (id === 'rotation_lB') {
+				imageIniB.rotation -= 7.5*boost(id);
+			}else if (id === 'alpha_upB') {
+				imageIniB.alpha += 0.1*boost(id);
+				if(imageIniB.alpha >= 0.9){
+					imageIniB.alpha = 1.0;
+					$('#alpha_upB').prop("disabled", true);
+				}
+				$('#alpha_downB').prop("disabled", false);
+			}else if (id === 'alpha_downB') {
+				imageIni.alpha -= 0.1*boost(id);
+				if(imageIni.alpha <= 0.1){
+					imageIni.alpha = 0.0;
+					$('#alpha_downB').prop("disabled", true);
+				}
+				$('#alpha_upB').prop("disabled", false);
+			}else if (id === 'resetB'){
+				imageIniB.resetImage();
+				boost(id)
+				$('#alpha_upB').prop("disabled", true);
+				$('#alpha_downB').prop("disabled", false);
+			//tabC
+			}else if (id === 'upC'){
+				imageIniC.yPos -= 1*boost(id);
+			}else if (id === 'downC'){
+				imageIniC.yPos += 1*boost(id);
+			}else if (id === 'leftC'){
+				imageIniC.xPos -= 1*boost(id);
+			}else if (id === 'rightC') {
+				imageIniC.xPos += 1*boost(id);
+			}else if (id === 'zoominC') {
+				imageIniC.Scale += 1*boost(id);
+			}else if (id === 'zoomoutC') {
+				imageIniC.Scale -= 1*boost(id);
+			}else if (id === 'rotation_rC') {
+				imageIniC.rotation += 7.5*boost(id);
+			}else if (id === 'rotation_lC') {
+				imageIniC.rotation -= 7.5*boost(id);
+			}else if (id === 'alpha_upC') {
+				imageIniC.alpha += 0.1*boost(id);
+				if(imageIniC.alpha >= 0.9){
+					imageIniC.alpha = 1.0;
+					$('#alpha_upC').prop("disabled", true);
+				}
+				$('#alpha_downC').prop("disabled", false);
+			}else if (id === 'alpha_downC') {
+				imageIniC.alpha -= 0.1*boost(id);
+				if(imageIniC.alpha <= 0.1){
+					imageIniC.alpha = 0.0;
+					$('#alpha_downC').prop("disabled", true);
+				}
+				$('#alpha_upC').prop("disabled", false);
+			}else if (id === 'resetC'){
+				imageIniC.resetImage();
+				boost(id)
+				$('#alpha_upC').prop("disabled", true);
+				$('#alpha_downC').prop("disabled", false);
 			}else if (id === 'dl'){
 				return;
 			}
@@ -447,7 +795,7 @@
 		baseImg.src = $('#logourl').val();
 		img = new createjs.Bitmap(baseImg);
 
-		loadImage(null, null, null);
+		loadImage(null, null, null, null, null);
 	});
 
 	// URL生成
