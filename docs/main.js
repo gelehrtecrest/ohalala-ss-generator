@@ -92,7 +92,7 @@
 
 		//tabC
 		//ローカル
-		if($('input[name=logo]:checked').val() === 'local'){
+		if($('input[name=logoC]:checked').val() === 'local'){
 			$('#alert').text('ローカルファイルです');
 			if(logoImageDataC !== null) {
 				var baseImg = new Image();
@@ -104,7 +104,7 @@
 			} else {
 				imgC = null;
 			}
-		} else if($('input[name=logo]:checked').val() === 'local_white'){
+		} else if($('input[name=logoC]:checked').val() === 'local_white'){
 			$('#alert').text('ローカルファイルです');
 			if(logoImageDataC !== null) {
 				var canvas = document.getElementById('canvasC');
@@ -148,6 +148,7 @@
 
 		//ステージ生成
 		stage.addChild(img2);
+		console.log(imgC);
 		if(imgC != null){
 			try{
 				imgC = modifyImage(imgC, imageIniC);
@@ -504,7 +505,7 @@
 			reader.readAsDataURL(fileList[0]);
 			//読み込み後
 			$(reader).on('load',function(){
-				imageIniB.logoImageDataC = reader.result;
+				imageIniC.logoImageDataC = reader.result;
 				loadlogocanvasC(reader.result, false);
 			});
 		});
@@ -517,7 +518,7 @@
 			reader.readAsDataURL(fileList[0]);
 			//読み込み後
 			$(reader).on('load',function(){
-				imageIniB.logoImageDataC = reader.result;
+				imageIniC.logoImageDataC = reader.result;
 				loadlogocanvasC(reader.result, true);
 			});
 		});
