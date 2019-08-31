@@ -13,3 +13,14 @@ body {
 #preview {
 	width: 100%;
 }
+
+.tab-content {
+	border-style: solid;
+	border-width: thin;
+	border-color: lightgray;
+	margin-bottom: 10px;
+}
+
+.nav-tabs{
+	border-bottom: none !important;
+}
