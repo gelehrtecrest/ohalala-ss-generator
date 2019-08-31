@@ -17,7 +17,7 @@ body {
 .tab-content {
 	border-style: solid;
 	border-width: thin;
-	border-color: lightgray;
+	border-color: #ddd;
 	margin-bottom: 10px;
 }
 
