@@ -646,9 +646,9 @@
 				}
 				$('#alpha_downB').prop("disabled", false);
 			}else if (id === 'alpha_downB') {
-				imageIni.alpha -= 0.1*boost(id);
-				if(imageIni.alpha <= 0.1){
-					imageIni.alpha = 0.0;
+				imageIniB.alpha -= 0.1*boost(id);
+				if(imageIniB.alpha <= 0.1){
+					imageIniB.alpha = 0.0;
 					$('#alpha_downB').prop("disabled", true);
 				}
 				$('#alpha_upB').prop("disabled", false);
