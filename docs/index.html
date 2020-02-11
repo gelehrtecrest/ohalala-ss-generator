@@ -350,10 +350,30 @@
 				</div>
 			</div>
 			<br />
-			<div class="alert alert-success lang" language="ja">Step4.(必須) 保存してください</div>
-			<div class="alert alert-success lang" language="en" style="display:none">Step4. Please Download.</div>
-			<div class="alert alert-success lang" language="ch" style="display:none">Step4. 请下载。</div>
-			<div class="alert alert-success lang" language="kr" style="display:none">Step4. 다운로드하십시오.</div>
+			<div class="alert alert-success lang" language="ja">Step4.(任意) 黄金比ガイドラインを表示(ダウンロード画像には反映されません)</div>
+			<input type="text" class="form-control" id="guidelineurl" placeholder="URL" style="display:none;">
+			<div class="container">
+				<div class="row">
+					<button id="guide" class="col-sm-2 editgenerator btn btn-primary">表示</button>
+					<button id="unguide" class="col-sm-2 editgenerator btn btn-warning">非表示</button>
+					<button id="leftG" class="col-sm-2 editgenerator btn btn-default">←</button>
+					<button id="upG" class="col-sm-2 editgenerator btn btn-default">↑</button>
+					<button id="downG" class="col-sm-2 editgenerator btn btn-default">↓</button>
+					<button id="rightG" class="col-sm-2 editgenerator btn btn-default">→</button>
+					<button id="zoominG" class="col-sm-2 editgenerator btn btn-default glyphicon glyphicon-resize-full"></button>
+					<button id="zoomoutG" class="col-sm-2 editgenerator btn btn-default glyphicon glyphicon-resize-small"></button>
+					<button id="rotation_lG" class="col-sm-2 editgenerator btn btn-default glyphicon glyphicon-repeat" style="transform: scale(-1, 1);"></button>
+					<button id="rotation_rG" class="col-sm-2 editgenerator btn btn-default glyphicon glyphicon-repeat"></button>
+					<button id="upsidedownG" class="col-sm-2 editgenerator btn btn-default" style="display: none;">上下反転</button>
+					<button id="leftsiderightG" class="col-sm-2 editgenerator btn btn-default" style="display: none;">左右反転</button>
+				</div>
+			</div>
+
+			<br />
+			<div class="alert alert-success lang" language="ja">Step5.(必須) 保存してください</div>
+			<div class="alert alert-success lang" language="en" style="display:none">Step5. Please Download.</div>
+			<div class="alert alert-success lang" language="ch" style="display:none">Step5. 请下载。</div>
+			<div class="alert alert-success lang" language="kr" style="display:none">Step5. 다운로드하십시오.</div>
 			<div class="module">
 				<div style="display:none">
 					<img id="newImg">
