@@ -145,7 +145,6 @@
 			var baseImg2 = new Image();
 			baseImg2.src = $('#guidelineurl').val()
 			guidelineImage = new createjs.Bitmap(baseImg2);
-			console.log(guidelineImage);
 		}
 		
 		stage = new createjs.Stage('result');
@@ -157,7 +156,6 @@
 
 		//ステージ生成
 		stage.addChild(img2);
-		console.log(imgC);
 		if(imgC != null){
 			try{
 				imgC = modifyImage(imgC, imageIniC);
@@ -731,12 +729,8 @@
 				$('#alpha_downC').prop("disabled", false);
 			}else if (id === 'guide'){
 				imageIniGuideline.alpha = 1.0;
-				console.log("guide");
-				console.log(imageIniGuideline.alpha);
 			}else if (id === 'unguide'){
 				imageIniGuideline.alpha = 0.0;
-				console.log("guide");
-				console.log(imageIniGuideline.alpha);
 			}else if (id === 'upG'){
 				imageIniGuideline.yPos -= 1*boost(id);
 			}else if (id === 'downG'){
@@ -756,12 +750,6 @@
 			}else if (id === 'dl'){
 				return;
 			}
-
-			console.log(id);
-			console.log(imageIniGuideline.xPos);
-			console.log(imageIniGuideline.yPos);
-			console.log(imageIniGuideline.Scale);
-			console.log(imageIniGuideline.alpha);
 			
 			//画像操作時は再描画を行う
 			if(imageIni.imageData !== null){
