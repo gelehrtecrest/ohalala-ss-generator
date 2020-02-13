@@ -612,6 +612,13 @@
 		var boost_count = 0;
 		const boost_id_default = "boost";
 		var boost_id = boost_id_default;
+		function is_longpress(id){
+			if(boost_id == id || pushing_flag == 0){
+				return true;
+			}
+			boost_id = id;
+			return false;
+		}
 		function boost(id){
 			if(boost_id === id){
 				boost_count += 1;
@@ -761,14 +768,20 @@
 			}else if (id === 'rotation_lG') {
 				imageIniGuideline.rotation -= 7.5*boost(id);
 			}else if (id === 'upsidedownG') {
-				imageIniGuideline.ScaleYFlag = imageIniGuideline.ScaleYFlag * (-1.0);
-				if(imageIniGuideline.ScaleYFlag > 0){
-					imageIniGuideline.yPos += 5*boost(id);
-				} else {
-					imageIniGuideline.yPos -= 5*boost(id);
+				//長押しで反応しないように
+				if(!is_longpress(id)){
+					imageIniGuideline.ScaleYFlag = imageIniGuideline.ScaleYFlag * (-1.0);
+					//ガイドラインの画像ずれ修正
+					if(imageIniGuideline.ScaleYFlag > 0){
+						imageIniGuideline.yPos += 5;
+					} else {
+						imageIniGuideline.yPos -= 5;
+					}
 				}
 			}else if (id === 'leftsiderightG') {
-				imageIniGuideline.ScaleXFlag = imageIniGuideline.ScaleXFlag * (-1.0);
+				if(!is_longpress(id)){
+					imageIniGuideline.ScaleXFlag = imageIniGuideline.ScaleXFlag * (-1.0);
+				}
 			}else if (id === 'dl'){
 				return;
 			}
