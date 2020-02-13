@@ -225,6 +225,11 @@
 		//透明化
 		img.alpha = imageIni.alpha;	
 		$('#alert').text('合成作業開始です ステップ 5');
+
+		//上下左右反転
+		img.scaleX = img.scaleX * imageIni.ScaleXFlag;
+		img.scaleY = img.scaleY * imageIni.ScaleYFlag;
+
 		return img;
 	}
 
@@ -276,6 +281,8 @@
 			Scale : -5,
 			rotation : 0,
 			alpha : 1.0,
+			ScaleXFlag : 1.0,
+			ScaleYFlag : 1.0,
 			imageData : null,
 			logoImageData : null,
 			guidelineImageData : null,
@@ -301,6 +308,8 @@
 			Scale : -5,
 			rotation : 0,
 			alpha : 1.0,
+			ScaleXFlag : 1.0,
+			ScaleYFlag : 1.0,
 			imageData : null,
 			logoImageDataB : null,
 			guidelineImageData : null,
@@ -326,6 +335,8 @@
 			Scale : -5,
 			rotation : 0,
 			alpha : 1.0,
+			ScaleXFlag : 1.0,
+			ScaleYFlag : 1.0,
 			imageData : null,
 			logoImageDataC : null,
 			guidelineImageData : null,
@@ -351,6 +362,8 @@
 			Scale : 48,
 			rotation : 0,
 			alpha : 0.0,
+			ScaleXFlag : 1.0,
+			ScaleYFlag : 1.0,
 			imageData : null,
 			resetImage : function(){
 				this.xPos = -20;
@@ -747,6 +760,15 @@
 				imageIniGuideline.rotation += 7.5*boost(id);
 			}else if (id === 'rotation_lG') {
 				imageIniGuideline.rotation -= 7.5*boost(id);
+			}else if (id === 'upsidedownG') {
+				imageIniGuideline.ScaleYFlag = imageIniGuideline.ScaleYFlag * (-1.0);
+				if(imageIniGuideline.ScaleYFlag > 0){
+					imageIniGuideline.yPos += 5*boost(id);
+				} else {
+					imageIniGuideline.yPos -= 5*boost(id);
+				}
+			}else if (id === 'leftsiderightG') {
+				imageIniGuideline.ScaleXFlag = imageIniGuideline.ScaleXFlag * (-1.0);
 			}else if (id === 'dl'){
 				return;
 			}
