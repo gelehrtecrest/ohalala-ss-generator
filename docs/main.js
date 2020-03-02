@@ -141,7 +141,7 @@
 		}
 
 		//ガイドラインイメージ再読み込み
-		if(guidelineImage != null){
+		if(guidelineImage !== null){
 			var baseImg2 = new Image();
 			baseImg2.src = $('#guidelineurl').val()
 			guidelineImage = new createjs.Bitmap(baseImg2);
