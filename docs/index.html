@@ -10,7 +10,7 @@
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-		<script src="main.js?2020213"></script>
+		<script src="main.js?2020319"></script>
 		<script src="language.js"></script>
 		<!-- Global Site Tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-101529000-3"></script>
@@ -94,11 +94,23 @@
 						<div class="col-sm-1"><input type="radio" name="logo" value="url" checked="checked"></div>
 						<div class="col-sm-11">
 							<div class="form-group">
-								<label for="exampleInputEmail1" class="lang" language="ja">合成したい画像のURL</label>
+								<label for="exampleInputEmail1" class="lang" language="ja">合成したいロゴ</label>
 								<label for="exampleInputEmail1" class="lang" language="en" style="display:none">URL</label>
 								<label for="exampleInputEmail1" class="lang" language="ch" style="display:none">URL</label>
 								<label for="exampleInputEmail1" class="lang" language="kr" style="display:none">URL</label>
-								<input type="text" class="form-control" id="logourl" placeholder="URL">
+								<select class="form-control" id="default-logo" name="logo_date_bk">
+									<option value="none">なし</option>
+									<option value="oha-hyur">おはヒュラ</option>
+									<option value="oha-lala" selected="selected">おはララ</option>
+									<option value="oha-ele">おはエレ</option>
+									<option value="oha-miqo">おはミコ</option>
+									<option value="oha-roega">おはルガ</option>
+									<option value="oha-ura">おはウラ</option>
+									<option value="oha-usa">おはウサ</option>
+									<option value="oha-gar">おはガル</option>
+								</select>
+								<img id="default-logo-img" src="./default-logo/oha-lala.png" style="max-width: 40%">
+								<input type="hidden" class="form-control" id="logourl" placeholder="URL" value="./default-logo/oha-lala.png">
 							</div>
 						</div>
 					</div>				
@@ -181,7 +193,19 @@
 								<label for="exampleInputEmail1" class="lang" language="en" style="display:none">URL</label>
 								<label for="exampleInputEmail1" class="lang" language="ch" style="display:none">URL</label>
 								<label for="exampleInputEmail1" class="lang" language="kr" style="display:none">URL</label>
-								<input type="text" class="form-control" id="logourl" placeholder="URL">
+								<select class="form-control" id="default-logoB" name="logo_date_bk">
+									<option value="none" selected="selected">なし</option>
+									<option value="oha-hyur">おはヒュラ</option>
+									<option value="oha-lala">おはララ</option>
+									<option value="oha-ele">おはエレ</option>
+									<option value="oha-miqo">おはミコ</option>
+									<option value="oha-roega">おはルガ</option>
+									<option value="oha-ura">おはウラ</option>
+									<option value="oha-usa">おはウサ</option>
+									<option value="oha-gar">おはガル</option>
+								</select>
+								<img id="default-logo-imgB" src="" style="max-width: 40%">
+								<input type="hidden" class="form-control" id="logourlB" placeholder="URL">
 							</div>
 						</div>
 					</div>
@@ -264,7 +288,19 @@
 								<label for="exampleInputEmail1" class="lang" language="en" style="display:none">URL</label>
 								<label for="exampleInputEmail1" class="lang" language="ch" style="display:none">URL</label>
 								<label for="exampleInputEmail1" class="lang" language="kr" style="display:none">URL</label>
-								<input type="text" class="form-control" id="logourl" placeholder="URL">
+								<select class="form-control" id="default-logoC" name="logo_date_bk">
+									<option value="none" selected="selected">なし</option>
+									<option value="oha-hyur">おはヒュラ</option>
+									<option value="oha-lala">おはララ</option>
+									<option value="oha-ele">おはエレ</option>
+									<option value="oha-miqo">おはミコ</option>
+									<option value="oha-roega">おはルガ</option>
+									<option value="oha-ura">おはウラ</option>
+									<option value="oha-usa">おはウサ</option>
+									<option value="oha-gar">おはガル</option>
+								</select>
+								<img id="default-logo-imgC" src="" style="max-width: 40%">
+								<input type="hidden" class="form-control" id="logourlC" placeholder="URL">
 							</div>
 						</div>
 					</div>

@@ -252,7 +252,7 @@
 
 		//設定のデフォルト値
 		//if(flag_b){
-			$('#logourl').val('./default.png');
+			//$('#logourl').val('./default.png');
 			$('#guidelineurl').val('./guideline.svg');
 			loadlogocanvas('./default.png', false);
 		//}
@@ -269,6 +269,36 @@
 				//URL再生成
 				write_settingurl(imageIni);
 				loadlogocanvas($('#logourl').val(), false);
+			}).fail(function(data){
+				$('#alert').text('ロゴのURLが間違っています。ヒント：httpsから始まるURLにしてください。');
+			});
+		});
+		$(document).on('input', '#logourlB', function() {
+			$.ajax({
+				url: $('#logourlB').val()
+			}).done(function(data){
+				var baseImg = new Image();
+				baseImg.src = $('#logourlB').val();
+				imgB = new createjs.Bitmap(baseImg);
+				$('#alert').text('');
+				//URL再生成
+				write_settingurl(imageIni);
+				loadlogocanvas($('#logourlB').val(), false);
+			}).fail(function(data){
+				$('#alert').text('ロゴのURLが間違っています。ヒント：httpsから始まるURLにしてください。');
+			});
+		});
+		$(document).on('input', '#logourlC', function() {
+			$.ajax({
+				url: $('#logourlC').val()
+			}).done(function(data){
+				var baseImg = new Image();
+				baseImg.src = $('#logourlC').val();
+				imgC = new createjs.Bitmap(baseImg);
+				$('#alert').text('');
+				//URL再生成
+				write_settingurl(imageIni);
+				loadlogocanvas($('#logourlC').val(), false);
 			}).fail(function(data){
 				$('#alert').text('ロゴのURLが間違っています。ヒント：httpsから始まるURLにしてください。');
 			});
@@ -484,6 +514,14 @@
 			image.src = url;
 		}
 
+		$('#default-logo').change(function (){
+			//デフォルトロゴ読み込み
+			var logo = "./default-logo/" + $("#default-logo").val() + ".png";
+			console.log(logo);
+			$("#logourl").val(logo);
+			$("#default-logo-img").attr("src", logo);
+		});
+
 		//tabB
 		//ロゴ画像読込
 		$('#logogetfileB').change(function (){
@@ -543,6 +581,14 @@
 			image.src = url;
 		}
 
+		$('#default-logoB').change(function (){
+			//デフォルトロゴ読み込み
+			var logo = "./default-logo/" + $("#default-logoB").val() + ".png";
+			console.log(logo);
+			$("#logourlB").val(logo);
+			$("#default-logo-imgB").attr("src", logo);
+		});
+
 		//tabC
 		//ロゴ画像読込
 		$('#logogetfileC').change(function (){
@@ -601,6 +647,14 @@
 			};
 			image.src = url;
 		}
+
+		$('#default-logoC').change(function (){
+			//デフォルトロゴ読み込み
+			var logo = "./default-logo/" + $("#default-logoC").val() + ".png";
+			console.log(logo);
+			$("#logourlC").val(logo);
+			$("#default-logo-imgC").attr("src", logo);
+		});
 
 		//ボタンイベントまとめ
 		var editgenerator_button = "";
