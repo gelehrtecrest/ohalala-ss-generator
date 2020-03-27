@@ -30,10 +30,12 @@ function mode_theme_dark(btn){
     document.body.classList.remove("light-theme");
     document.body.classList.add("dark-theme");
     Cookies.set('mode', 'dark');
+    $('#btn-mode').prop('checked', true);
 }
 function mode_theme_light(btn){
     // ライトモード
     document.body.classList.remove("dark-theme");
     document.body.classList.add("light-theme");
     Cookies.set('mode', 'light');
+    $('#btn-mode').prop('checked', false);
 };
