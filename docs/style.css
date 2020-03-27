@@ -24,3 +24,16 @@ body {
 .nav-tabs{
 	border-bottom: none !important;
 }
+
+/* ダークモード */
+.dark-theme {
+	background: #000;
+	color: #ddd
+}
+.dark-theme .jumbotron {
+	background: #333;
+}
+.dark-theme .nav-tabs li.active a{
+	background-color: #000;
+	color: #333;
+}
