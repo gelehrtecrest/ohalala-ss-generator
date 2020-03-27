@@ -9,7 +9,6 @@ $(window).on("load", function(){
 
     // Cookieから読み込んだ時の挙動
     const mode = Cookies.get('mode');
-    console.log(mode);
     if(mode == "dark"){
         mode_theme_dark(btn);
     } else {
