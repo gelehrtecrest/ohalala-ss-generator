@@ -6,6 +6,9 @@
 	var img;
 	var imgB;
 	var imgC;
+	var qrimgtext;
+	var qrimgtextB;
+	var qrimgtextC;
 	var img2;
 	var guidelineImage;
 	var stage;
@@ -42,6 +45,15 @@
 			} else {
 				img = null;
 			}
+		} else if($('input[name=logo]:checked').val() === 'qr'){
+			$('#alert').text('QRコードです');
+			var baseImage = new Image();
+			baseImage.onload = function() {
+				img = new createjs.Bitmap(baseImage);
+				genImage(imageIni, imageIniB, imageIniC, imageIniGuideline, guidelineflag);
+				$('#alert').text('合成完了です！');
+			};
+			baseImage.src = qrimgtext;
 		} else if($('input[name=logo]:checked').val() === 'url'){
 			try{
 				var baseImg = new Image();
@@ -81,6 +93,15 @@
 			} else {
 				imgB = null;
 			}
+		} else if($('input[name=logoB]:checked').val() === 'qr'){
+			$('#alert').text('QRコードです');
+			var baseImageB = new Image();
+			baseImageB.onload = function() {
+				imgB = new createjs.Bitmap(baseImageB);
+				genImage(imageIni, imageIniB, imageIniC, imageIniGuideline, guidelineflag);
+				$('#alert').text('合成完了です！');
+			};
+			baseImageB.src = qrimgtextB;
 		} else if($('input[name=logoB]:checked').val() === 'url'){
 			try{
 				var baseImg = new Image();
@@ -119,6 +140,15 @@
 			} else {
 				imgC = null;
 			}
+		} else if($('input[name=logoC]:checked').val() === 'qr'){
+			$('#alert').text('QRコードです');
+			var baseImageC = new Image();
+			baseImageC.onload = function() {
+				imgC = new createjs.Bitmap(baseImageC);
+				genImage(imageIni, imageIniB, imageIniC, imageIniGuideline, guidelineflag);
+				$('#alert').text('合成完了です！');
+			};
+			baseImageC.src = qrimgtextC;
 		} else if($('input[name=logoC]:checked').val() === 'url'){
 			try{
 				var baseImg = new Image();
@@ -302,6 +332,28 @@
 			}).fail(function(data){
 				$('#alert').text('ロゴのURLが間違っています。ヒント：httpsから始まるURLにしてください。');
 			});
+		});
+
+		$(document).on('input', '#qrtext', function() {
+			$("#qrdiv").empty();
+			var qrtext = $('#qrtext').val();
+			$('#qrdiv').qrcode(qrtext);
+			var qrcanvas = $('#qrdiv').children('canvas');
+		    qrimgtext = qrcanvas[0].toDataURL('image/png');
+		});
+		$(document).on('input', '#qrtextB', function() {
+			$("#qrdivB").empty();
+			var qrtext = $('#qrtextB').val();
+			$('#qrdivB').qrcode(qrtext);
+			var qrcanvas = $('#qrdivB').children('canvas');
+		    qrimgtextB = qrcanvas[0].toDataURL('image/png');
+		});
+		$(document).on('input', '#qrtextC', function() {
+			$("#qrdivC").empty();
+			var qrtext = $('#qrtextC').val();
+			$('#qrdivC').qrcode(qrtext);
+			var qrcanvas = $('#qrdivC').children('canvas');
+		    qrimgtextC = qrcanvas[0].toDataURL('image/png');
 		});
 
 		//読込画像のオブジェクト

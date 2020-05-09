@@ -40,3 +40,10 @@ body {
 	color: #333;
 	transition: .5s;
 }
+
+/* QR */
+#qrdiv canvas,
+#qrdivB canvas,
+#qrdivC canvas{
+	width: 64px;
+}

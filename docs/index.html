@@ -10,7 +10,8 @@
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-		<script src="main.js?2020319"></script>
+		<script src="jquery.qrcode.min.js"></script>
+		<script src="main.js?2020509"></script>
 		<script src="language.js"></script>
 		<!-- ダークモード -->
 		<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
@@ -24,7 +25,7 @@
 
     gtag('config', 'UA-101529000-3');
 		</script>
-		<link href="style.css?20200327" rel="stylesheet">
+		<link href="style.css?20200509" rel="stylesheet">
 	</head>
 	<body class="">
 		<language initial="ja" lang="ja,en,ch,kr"></language>
@@ -148,6 +149,21 @@
 							</dl>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-sm-1"><input type="radio" name="logo" value="qr"></div>
+						<div class="col-sm-11">
+							<dl class="table">
+								<dd>
+									<label for="exampleInputEmail1" class="lang" language="ja">合成したいQR画像に組み込むテキスト</label>
+								</dd>
+								<dd>
+									<div id="qrdiv" class="col-sm-2"></div>
+								</dd>
+								<dd><input type="text" id="qrtext" class="col-sm-12" placeholder="半角英数字・記号のみ https://twitter.com/gelehrte_crest など"><dd>
+							</dl>
+						</div>
+					</div>
+					<br />
 					<div class="alert alert-success lang" language="ja">Step3.(必須) 合成ボタンを押すとロゴが貼り付けられます。ロゴの位置・サイズも変更できます。</div>
 					<div class="alert alert-success lang" language="en" style="display:none">Step3. Push the "Put" button, and generate the ohalala screenshot.</div>
 					<div class="alert alert-success lang" language="ch" style="display:none">Step3. 按“放置”按钮，生成おはララ屏幕截图。</div>
@@ -243,6 +259,21 @@
 							</dl>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-sm-1"><input type="radio" name="logoB" value="qr"></div>
+						<div class="col-sm-11">
+							<dl class="table">
+								<dd>
+									<label for="exampleInputEmail1" class="lang" language="ja">合成したいQR画像に組み込むテキスト</label>
+								</dd>
+								<dd>
+									<div id="qrdivB" class="col-sm-2"></div>
+								</dd>
+								<dd><input type="text" id="qrtextB" class="col-sm-12" placeholder="半角英数字・記号のみ https://twitter.com/gelehrte_crest など"><dd>
+							</dl>
+						</div>
+					</div>
+					<br />
 					<div class="alert alert-success lang" language="ja">Step3.(必須) 合成ボタンを押すとロゴが貼り付けられます。ロゴの位置・サイズも変更できます。</div>
 					<div class="alert alert-success lang" language="en" style="display:none">Step3. Push the "Put" button, and generate the ohalala screenshot.</div>
 					<div class="alert alert-success lang" language="ch" style="display:none">Step3. 按“放置”按钮，生成おはララ屏幕截图。</div>
@@ -338,6 +369,21 @@
 							</dl>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-sm-1"><input type="radio" name="logoC" value="qr"></div>
+						<div class="col-sm-11">
+							<dl class="table">
+								<dd>
+									<label for="exampleInputEmail1" class="lang" language="ja">合成したいQR画像に組み込むテキスト</label>
+								</dd>
+								<dd>
+									<div id="qrdivC" class="col-sm-2"></div>
+								</dd>
+								<dd><input type="text" id="qrtextC" class="col-sm-12" placeholder="半角英数字・記号のみ https://twitter.com/gelehrte_crest など"><dd>
+							</dl>
+						</div>
+					</div>
+					<br />
 					<div class="alert alert-success lang" language="ja">Step3.(必須) 合成ボタンを押すとロゴが貼り付けられます。ロゴの位置・サイズも変更できます。</div>
 					<div class="alert alert-success lang" language="en" style="display:none">Step3. Push the "Put" button, and generate the ohalala screenshot.</div>
 					<div class="alert alert-success lang" language="ch" style="display:none">Step3. 按“放置”按钮，生成おはララ屏幕截图。</div>
